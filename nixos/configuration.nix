@@ -74,23 +74,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
-    helix
-    wl-clipboard
-    kitty # terminal (default for hyprland)
-    wezterm
-    yazi # Shell File Manager
-    waybar
-    hyprpaper
-    bibata-cursors
-    dunst
-    wofi
-    firefox
-    unzip
-    mpv
-
     git
-
-    renderdoc
+    unzip
   ];
 
   fonts.packages = with pkgs; [

@@ -1,22 +1,27 @@
 { config, pkgs, ... }:
 
-let
-  dotfiles = "home/rlllok/.dotfiles";
-in
-{
-  home.username = "rlllok";
-  home.homeDirectory = "/home/rlllok";
+{ home.username = "rlllok"; home.homeDirectory = "/home/rlllok";
 
   home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    blender
+    wezterm
+    helix
+    yazi # Shell File Manager
+
+    bibata-cursors
+    hyprpaper
+    waybar
+    wofi
+    wl-clipboard
+
+    blender mpv
+
+    renderdoc
+
+    firefox
   ];
 
-  xdg.configFile.helix = {
-    source = "${dotfiles}/helix";
-    recursive = true;
-  };
 }
