@@ -1,0 +1,54 @@
+* {
+  all:unset;
+  font-size: 14px;
+  text-shadow:none;
+  color: #fecdb2;
+}
+
+window {
+  all:unset;
+  border-radius: 10px;
+  background: alpha(#2b292d, 0.9);
+}
+
+#input {
+  all:unset;
+  margin-left:10px;
+  margin-right:10px;
+  margin-top:10px;
+  margin-bottom: 10px;
+  outline: true;
+  padding: 20px;
+  border: 2px solid #fecdb2;
+  border-radius:10;
+}
+#scroll {
+  padding: 5px;
+  border: none;
+}
+
+#input image {
+  padding-right:10px;
+}
+
+#input:focus {
+  outline: 2px solid #fecdb2;
+  border-radius:10;
+}
+
+#entry {
+  padding: 5px;
+}
+
+#entry:selected {
+  border: 2px solid #fecdb2;
+  border-radius: 20px;
+}
+
+#inner-box {
+  all:unset;
+  margin: 2px;
+  padding: 20px;
+  color: #fecdb2;
+  border-radius:10;
+}

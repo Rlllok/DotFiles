@@ -1,0 +1,29 @@
+* {
+  font-size: 14px;
+  color: #fecdb2;
+}
+
+window#waybar {
+  all:unset
+}
+
+.modules-left {
+  padding: 2px;
+  margin: 5px 0px 0px 5px;
+  border-radius: 10px;
+  background: alpha(#2b292d, 0.9);
+}
+
+.modules-center {
+  padding: 0px;
+  margin: 5px 0px 0px 10px;
+  border-radius: 10px;
+  background: alpha(#2b292d, 0.9);
+}
+
+.modules-right {
+  padding: 4px;
+  margin: 5px 5px 0px 0px;
+  border-radius: 10px;
+  background: alpha(#2b292d, 0.9);
+}
