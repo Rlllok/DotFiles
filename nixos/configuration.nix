@@ -79,7 +79,7 @@
   ];
 
   fonts.packages = with pkgs; [
-    font-awesome
+    nerd-fonts.lilex
   ];
 
   programs.xwayland.enable = true;

@@ -1,29 +1,25 @@
 * {
+  font-family: "Lilex Nerd Font";
   font-size: 14px;
+  min-height: 0;
+  border: none;
+  border-radius:0;
   color: #fecdb2;
 }
 
-window#waybar {
-  all:unset
+#waybar {
+  background-color: rgba(0, 0, 0, 0);
 }
 
-.modules-left {
-  padding: 2px;
-  margin: 5px 0px 0px 5px;
-  border-radius: 10px;
-  background: alpha(#2b292d, 0.9);
-}
-
-.modules-center {
-  padding: 0px;
-  margin: 5px 0px 0px 10px;
-  border-radius: 10px;
-  background: alpha(#2b292d, 0.9);
-}
-
-.modules-right {
-  padding: 4px;
-  margin: 5px 5px 0px 0px;
-  border-radius: 10px;
-  background: alpha(#2b292d, 0.9);
+#pulseaudio,
+#battery,
+#clock,
+#network,
+#cpu,
+#memory,
+#workspaces {
+  border-radius: 4px;
+  margin: 1px 3px;
+  padding: 6px 12px;
+  background: #2b292d;
 }
