@@ -3,6 +3,9 @@ theme = "custom"
 [editor]
 line-number = "relative"
 
+[editor.lsp]
+enable = false
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"

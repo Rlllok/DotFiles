@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     wezterm
     helix
+    neovim
     yazi # Shell File Manager
 
     bibata-cursors

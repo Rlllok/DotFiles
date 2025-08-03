@@ -3,7 +3,7 @@
   "position": "top",
   "reload_style_on_change": true,
 
-  "modules-left": ["network", "memory", "cpu"],
+  "modules-left": ["network", "memory", "cpu", "hyprland/language"],
   "network": {
     "format-wifi": " 󰤨 {essid} ",
     "format-ethernet": " Wired ",
@@ -31,6 +31,10 @@
       "persistent-workspaces": {
           "*": [ 1,2,3 ]
       }
+    },
+
+    "hyprland/language": {
+        "format": " {short} {variant}",
     },
 
   "modules-right": ["pulseaudio", "battery", "clock"],

@@ -53,7 +53,8 @@
   # Configure keymap in X11
   services.xserver = {
     exportConfiguration = true;
-    xkb.layout = "us, ua";
+    xkb.layout = "us, us, ua";
+    xkb.variant = ", dvorak, ";
     xkb.options = "grp:alt_shift_toggle";
   };
 
@@ -83,9 +84,11 @@
   ];
 
   programs.xwayland.enable = true;
+  programs.steam.enable = true;
 
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     xwayland.enable = true;
   };
 
