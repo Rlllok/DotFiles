@@ -45,6 +45,8 @@ vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
 
 vim.keymap.set("n", "<leader>-", "70A-<Esc>70d|", { remap = true })
 
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
 vim.defer_fn(function()
     require("nvim-treesitter.configs").setup({
         ensure_installed = { "c", "cpp", "lua" },
@@ -57,6 +59,41 @@ vim.defer_fn(function()
         },
     })
 end, 0)
+
+-- Terminal ----------------------------------------------------------
+local system_name = vim.loop.os_uname().sysname
+
+local terminal_buffer = 0;
+local job_id = 0;
+
+
+function OpenTerminal()
+	if terminal_buffer == 0 then
+		vim.cmd.term()
+		terminal_buffer = vim.api.nvim_get_current_buf()
+		job_id = vim.bo.channel
+	end
+	vim.api.nvim_set_current_buf(terminal_buffer)
+end
+
+vim.keymap.set("n", "<space>wt", OpenTerminal)
+
+vim.keymap.set("n", "<space>bb", function()
+	OpenTerminal()
+	if system_name == "Windows_NT" then
+		vim.fn.chansend(job_id, {"build main\r"})
+	elseif system_name == "Linux" then
+		vim.fn.chansend(job_id, {"sh build.sh main\r"})
+	end
+end)
+vim.keymap.set("n", "<space>br", function()
+	OpenTerminal()
+	if system_name == "Windows_NT" then
+		vim.fn.chansend(job_id, {"build\\main\r"})
+	elseif system_name == "Linux" then
+		vim.fn.chansend(job_id, {"./build/main\r"})
+	end
+end)
 
 -- Setup Custom Theme--------------------------------------------------
 -- :h group-name - shows names of groups with explanation
