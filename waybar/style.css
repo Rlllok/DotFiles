@@ -1,14 +1,15 @@
 * {
-  font-family: "Lilex Nerd Font";
-  font-size: 14px;
-  min-height: 0;
-  border: none;
-  border-radius:0;
+  font-family: "Noto Sans Mono";
+  font-size: 12px;
+  min-height: 0px;
+  border-radius: 0px;
   color: #fecdb2;
 }
 
 #waybar {
-  background-color: rgba(0, 0, 0, 0);
+  margin: 12px 12px 12px 12px;
+  border-radius: 4px;
+  background: #2b292d;
 }
 
 #pulseaudio,
@@ -19,8 +20,6 @@
 #memory,
 #workspaces,
 #language {
-  border-radius: 4px;
-  margin: 1px 3px;
-  padding: 6px 12px;
-  background: #2b292d;
+  margin: 0px 3px;
+  padding: 0px 12px;
 }
