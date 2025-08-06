@@ -8,11 +8,6 @@ vim.opt.swapfile = false
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.keymap.set({"n", "v"}, "K", "{", {remap = true})
-vim.keymap.set({"n", "v"}, "J", "}", {remap = true})
-
-vim.keymap.set("n", "<leader>-", "70A-<Esc>70d|", { remap = true })
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -34,26 +29,41 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim",dependencies = { "nvim-lua/plenary.nvim" }
   },
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 })
 
-require("nvim-treesitter.configs").setup {
-	ensure_installed = {"c", "cpp", "lua"},
+-- Keymaps
+vim.keymap.set({"n", "v"}, "K", "{zz", {remap = true})
+vim.keymap.set({"n", "v"}, "J", "}zz", {remap = true})
 
-	auto_install = true,
+vim.keymap.set("n", "<leader>ww", "<C-w>w", {remap = true})
+vim.keymap.set("n", "<leader>ws", function() vim.cmd("vsplit") end)
+vim.keymap.set("n", "<leader>wq", function() vim.cmd("q") end)
 
-	hightlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
-}
+local telescope_builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files)
+vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
+
+vim.keymap.set("n", "<leader>-", "70A-<Esc>70d|", { remap = true })
+
+vim.defer_fn(function()
+    require("nvim-treesitter.configs").setup({
+        ensure_installed = { "c", "cpp", "lua" },
+
+        auto_install = false,
+
+        hightlight = {
+            enable = false,
+            additional_vim_regex_highlighting = false,
+        },
+    })
+end, 0)
 
 -- Setup Custom Theme--------------------------------------------------
 -- :h group-name - shows names of groups with explanation
 -- :hi - to check all active groups
 vim.o.background = "dark"
 vim.o.cursorline = true
--- vim.cmd("syntax reset")
+vim.cmd("syntax reset")
 vim.o.termguicolors = true
 
 -- local black = "#1A1E23"
@@ -64,12 +74,12 @@ local cerise       = "#da4167"
 local process_cyan = "#01baef"
 local periwinkle   = "#C9DDFF"
 
-local background_color         = black
+local background_color         = "#2b292d"
 local indentation_color        = "#2a2c30"
 local cursor_background_color  = "#282E36"
 local line_number_color        = "#999999"
 local cursor_line_number_color = line_number_color
-local normal_color             = "#eacda6"
+local normal_color             = "#fecdb2"
 local comment_color            = "#81796f"
 local string_color             = "#81796f"
 local type_color               = earth_yellow
