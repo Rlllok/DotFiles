@@ -75,6 +75,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
+		clang-tools
     git
     unzip
   ];
