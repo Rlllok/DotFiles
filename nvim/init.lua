@@ -100,48 +100,62 @@ end)
 -- :hi - to check all active groups
 vim.o.background = "dark"
 vim.o.cursorline = true
-vim.cmd("syntax reset")
 vim.o.termguicolors = true
 
--- local black = "#1A1E23"
-local black        = "#121519"
-local green        = "#9db989"
-local earth_yellow = "#c69a60"
-local cerise       = "#da4167"
-local process_cyan = "#01baef"
-local periwinkle   = "#C9DDFF"
+local colors = {
+	bg = "#1A2F2A", -- Deep forest green
+	fg = "#c1c99d", -- Light mossy text
+	cursor = "#A8B5A2", -- Soft lichen
+	selection = "#3A4F3A", -- Muted pine
+	line_highlight = "#223B34", -- Dark evergreen
+	keyword = "#6B8E23", -- Olive green
+	string = "#8B5A2B", -- Bark brown
+	comment = "#5E7B5E", -- Mossy gray-green
+	func = "#9ACD32", -- Leafy green
+	variable = "#A8B5A2", -- Lichen
+	number = "#7BB37B", -- Fern green
+	constant = "#4682B4", -- Stream blue
+	class = "#3CB371", -- Forest green
+	operator = "#c1c99d", -- Light mossy text
+	tag = "#6B8E23", -- Olive green
+	attribute = "#A8B5A2", -- Lichen
+	border = "#3F4F3F", -- Pine shadow
+	panel_bg = "#223B34", -- Dark evergreen
+	status_bar = "#4A7043", -- Deep moss
+	status_bar_fg = "#D9E4D8", -- Light mossy text
+	tab_active = "#1A2F2A", -- Deep forest green
+	tab_inactive = "#2E3F38" -- Shaded evergreen
+}
 
-local background_color         = "#2b292d"
-local indentation_color        = "#2a2c30"
-local cursor_background_color  = "#282E36"
-local line_number_color        = "#999999"
-local cursor_line_number_color = line_number_color
-local normal_color             = "#fecdb2"
-local comment_color            = "#81796f"
-local string_color             = "#81796f"
-local type_color               = earth_yellow
-local identifier_color         = normal_color
-local statement_color          = periwinkle
-local operator_color           = "#e16785"
-local function_color           = cerise
-local preproc_color            = process_cyan
-local enum_member_color        = "#f3ffc9"
+local function set_colors(mode)
+  local c = colors
+  vim.api.nvim_set_hl(0, "Normal", { fg = c.fg, bg = c.bg })
+  vim.api.nvim_set_hl(0, "Cursor", { fg = c.bg, bg = c.cursor })
+  vim.api.nvim_set_hl(0, "Visual", { bg = c.selection })
+  vim.api.nvim_set_hl(0, "CursorLine", { bg = c.line_highlight })
+  vim.api.nvim_set_hl(0, "Keyword", { fg = c.keyword})
+  vim.api.nvim_set_hl(0, "Statement", { fg = c.keyword})
+  vim.api.nvim_set_hl(0, "PreProc", { fg = c.keyword})
+  vim.api.nvim_set_hl(0, "String", { fg = c.string })
+  vim.api.nvim_set_hl(0, "Comment", { fg = c.comment})
+  vim.api.nvim_set_hl(0, "Function", { fg = c.func })
+  vim.api.nvim_set_hl(0, "Identifier", { fg = c.variable })
+  vim.api.nvim_set_hl(0, "@variable", { fg = c.variable })
+  vim.api.nvim_set_hl(0, "Number", { fg = c.number })
+  vim.api.nvim_set_hl(0, "Constant", { fg = c.constant })
+  vim.api.nvim_set_hl(0, "Type", { fg = c.class })
+  vim.api.nvim_set_hl(0, "Operator", { fg = c.operator })
+  vim.api.nvim_set_hl(0, "htmlTag", { fg = c.tag })
+  vim.api.nvim_set_hl(0, "htmlArg", { fg = c.attribute })
+  vim.api.nvim_set_hl(0, "LineNr", { fg = c.comment })
+  vim.api.nvim_set_hl(0, "CursorLineNr", { fg = c.fg, bold = true })
+  vim.api.nvim_set_hl(0, "StatusLine", { fg = c.status_bar_fg, bg = c.status_bar })
+  vim.api.nvim_set_hl(0, "StatusLineNC", { fg = c.fg, bg = c.panel_bg })
+  vim.api.nvim_set_hl(0, "TabLineSel", { fg = c.fg, bg = c.tab_active })
+  vim.api.nvim_set_hl(0, "TabLine", { fg = c.fg, bg = c.tab_inactive })
+  vim.api.nvim_set_hl(0, "VertSplit", { fg = c.border })
+  vim.api.nvim_set_hl(0, "Pmenu", { fg = c.fg, bg = c.panel_bg })
+  vim.api.nvim_set_hl(0, "PmenuSel", { fg = c.status_bar_fg, bg = c.status_bar })
+end
 
-vim.api.nvim_set_hl(0, "LineNr",               { fg = line_number_color })
-vim.api.nvim_set_hl(0, "CursorLineNr",         { fg = cursor_line_number_color, bg = cursor_background_color})
--- Text
-vim.api.nvim_set_hl(0, "Normal",               { fg = normal_color, bg = background_color })
-vim.api.nvim_set_hl(0, "Visual",               { bg = "#595b5e"})
-vim.api.nvim_set_hl(0, "Pmenu",                { fg = normal_color, bg = background_color })
-vim.api.nvim_set_hl(0, "Identifier",           { fg = identifier_color })
-vim.api.nvim_set_hl(0, "Constant",             { fg = type_color })
-vim.api.nvim_set_hl(0, "Type",                 { fg = type_color })
-vim.api.nvim_set_hl(0, "Function",             { fg = function_color })
-vim.api.nvim_set_hl(0, "PreProc",              { fg = preproc_color })
-vim.api.nvim_set_hl(0, "Statement",            { fg = statement_color })
-vim.api.nvim_set_hl(0, "Operator",             { fg = operator_color })
-vim.api.nvim_set_hl(0, "Comment",              { fg = comment_color })
-vim.api.nvim_set_hl(0, "CursorLine",           { bg = cursor_background_color })
-vim.api.nvim_set_hl(0, "@lsp.type.enumMember", { fg = enum_member_color })
-vim.api.nvim_set_hl(0, "NonText",              { fg = cerise})
-
+set_colors("dark")
