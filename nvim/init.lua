@@ -102,26 +102,49 @@ vim.o.background = "dark"
 vim.o.cursorline = true
 vim.o.termguicolors = true
 
+local palette = {
+	brunwick_green = "#34554B",
+	reseda_green = "#737249",
+	dark_green = "#263B25",
+	field_drab = "#614E0A",
+	smoky_black = "#070401",
+	smoky_brown = "#140D04",
+	ash_gray = "#b8bdb3",
+	gunmetal = "#30373E",
+	drab_dark_brown = "#2D2B0A",
+
+	brown = "#8C4303",
+	dark_moss_green = "#465902",
+	log_cabin = "#191E15",
+	oxley = "#6C9885",
+	mongoose = "#BCAC84",
+	black_olive = "#283021",
+	slate_grey = "#6B7991",
+}
+
 local colors = {
-	bg = "#1A2F2A", -- Deep forest green
-	fg = "#c1c99d", -- Light mossy text
-	cursor = "#A8B5A2", -- Soft lichen
-	selection = "#3A4F3A", -- Muted pine
-	line_highlight = "#223B34", -- Dark evergreen
-	keyword = "#6B8E23", -- Olive green
-	string = "#8B5A2B", -- Bark brown
-	comment = "#5E7B5E", -- Mossy gray-green
-	func = "#9ACD32", -- Leafy green
+	bg = palette.log_cabin,
+	fg = palette.ash_gray,
+	delimiter = palette.ash_gray,
+	cursor = "#A8B5A2", -- Soft lichenjk w
+	selection = palette.black_olive,
+	line_highlight = palette.black_olive,
+	keyword = palette.slate_grey,
+	string = palette.oxley, -- Bark brown
+	-- comment = "#5E7B5E", -- Mossy gray-green
+	comment = palette.field_drab,
+	func = palette.reseda_green,
 	variable = "#A8B5A2", -- Lichen
-	number = "#7BB37B", -- Fern green
-	constant = "#4682B4", -- Stream blue
-	class = "#3CB371", -- Forest green
+	number = palette.mongoose,
+	constant = palette.mongoose,
+	special = palette.mongoose,
+	type = palette.brown, -- Forest green
 	operator = "#c1c99d", -- Light mossy text
 	tag = "#6B8E23", -- Olive green
 	attribute = "#A8B5A2", -- Lichen
-	border = "#3F4F3F", -- Pine shadow
+	border = palette.ash_gray,
 	panel_bg = "#223B34", -- Dark evergreen
-	status_bar = "#4A7043", -- Deep moss
+	status_bar = palette.dark_green,
 	status_bar_fg = "#D9E4D8", -- Light mossy text
 	tab_active = "#1A2F2A", -- Deep forest green
 	tab_inactive = "#2E3F38" -- Shaded evergreen
@@ -136,21 +159,23 @@ local function set_colors(mode)
   vim.api.nvim_set_hl(0, "Keyword", { fg = c.keyword})
   vim.api.nvim_set_hl(0, "Statement", { fg = c.keyword})
   vim.api.nvim_set_hl(0, "PreProc", { fg = c.keyword})
+  vim.api.nvim_set_hl(0, "Special", { fg = c.special})
   vim.api.nvim_set_hl(0, "String", { fg = c.string })
   vim.api.nvim_set_hl(0, "Comment", { fg = c.comment})
   vim.api.nvim_set_hl(0, "Function", { fg = c.func })
   vim.api.nvim_set_hl(0, "Identifier", { fg = c.variable })
   vim.api.nvim_set_hl(0, "@variable", { fg = c.variable })
   vim.api.nvim_set_hl(0, "Number", { fg = c.number })
+  vim.api.nvim_set_hl(0, "Delimiter", { fg = c.delimiter })
   vim.api.nvim_set_hl(0, "Constant", { fg = c.constant })
-  vim.api.nvim_set_hl(0, "Type", { fg = c.class })
+  vim.api.nvim_set_hl(0, "Type", { fg = c.type })
   vim.api.nvim_set_hl(0, "Operator", { fg = c.operator })
   vim.api.nvim_set_hl(0, "htmlTag", { fg = c.tag })
   vim.api.nvim_set_hl(0, "htmlArg", { fg = c.attribute })
-  vim.api.nvim_set_hl(0, "LineNr", { fg = c.comment })
+  vim.api.nvim_set_hl(0, "LineNr", { fg = c.comment, bold = true })
   vim.api.nvim_set_hl(0, "CursorLineNr", { fg = c.fg, bold = true })
-  vim.api.nvim_set_hl(0, "StatusLine", { fg = c.status_bar_fg, bg = c.status_bar })
-  vim.api.nvim_set_hl(0, "StatusLineNC", { fg = c.fg, bg = c.panel_bg })
+  vim.api.nvim_set_hl(0, "StatusLine", { fg = c.fg, bg = c.status_bar, bold = true})
+  vim.api.nvim_set_hl(0, "StatusLineNC", { fg = c.fg, bg = c.status_bar })
   vim.api.nvim_set_hl(0, "TabLineSel", { fg = c.fg, bg = c.tab_active })
   vim.api.nvim_set_hl(0, "TabLine", { fg = c.fg, bg = c.tab_inactive })
   vim.api.nvim_set_hl(0, "VertSplit", { fg = c.border })

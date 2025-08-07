@@ -3,13 +3,13 @@
   all:unset;
   font-size: 14px;
   text-shadow:none;
-  color: #fecdb2;
+  color: #BCAC94;
 }
 
 window {
   all:unset;
   border-radius: 10px;
-  background: alpha(#2b292d, 0.9);
+  background: alpha(#191E15, 0.95);
 }
 
 #input {
@@ -50,6 +50,6 @@ window {
   all:unset;
   margin: 2px;
   padding: 20px;
-  color: #fecdb2;
+  color: #BCAC94;
   border-radius:10;
 }
