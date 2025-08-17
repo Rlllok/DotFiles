@@ -1,10 +1,3 @@
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.wrap = false
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.swapfile = false
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
@@ -31,41 +24,95 @@ require("lazy").setup({
   },
 })
 
--- Keymaps
-vim.keymap.set({"n", "v"}, "K", "{zz", {remap = true})
-vim.keymap.set({"n", "v"}, "J", "}zz", {remap = true})
+----------------------------------------------------------------------
+-- Main
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.wrap = false
+vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 8
+vim.opt.swapfile = false
 
+----------------------------------------------------------------------
+-- Indentation
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+
+----------------------------------------------------------------------
+-- Search
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+----------------------------------------------------------------------
+-- Visual
+vim.opt.termguicolors = true
+vim.opt.showmatch = true
+
+----------------------------------------------------------------------
+-- Files
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
+vim.opt.autoread = true
+
+----------------------------------------------------------------------
+-- Behavior
+vim.opt.autochdir = false
+vim.opt.path:append("**")
+vim.opt.mouse = "a"
+
+----------------------------------------------------------------------
+-- Keymaps
+-- Movement
+vim.keymap.set({"n", "v"}, "K","{", {remap = true})
+vim.keymap.set({"n", "v"}, "J", "}", {remap = true})
+vim.keymap.set("n", "n", "nzzzv");
+vim.keymap.set("n", "N", "Nzzzv");
+
+-- Delete/Yanking
+vim.keymap.set({"n", "v"}, "<leader>d", '"_d');
+
+-- Windows
 vim.keymap.set("n", "<leader>ww", "<C-w>w", {remap = true})
 vim.keymap.set("n", "<leader>ws", function() vim.cmd("vsplit") end)
 vim.keymap.set("n", "<leader>wq", function() vim.cmd("q") end)
 
+-- Telescope
 local telescope_builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files)
 vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
 
 vim.keymap.set("n", "<leader>-", "70A-<Esc>70d|", { remap = true })
 
+-- Terminal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
+----------------------------------------------------------------------
+-- Treesitter
 vim.defer_fn(function()
     require("nvim-treesitter.configs").setup({
         ensure_installed = { "c", "cpp", "lua" },
 
         auto_install = false,
 
-        hightlight = {
-            enable = false,
-            additional_vim_regex_highlighting = false,
+        highlight = {
+            enable = true,
+            additional_vim_regex_highlighting = true,
         },
     })
 end, 0)
 
--- Terminal ----------------------------------------------------------
+----------------------------------------------------------------------
+-- Terminal
 local system_name = vim.loop.os_uname().sysname
 
 local terminal_buffer = 0;
 local job_id = 0;
-
 
 function OpenTerminal()
 	if terminal_buffer == 0 then
@@ -95,12 +142,32 @@ vim.keymap.set("n", "<space>br", function()
 	end
 end)
 
--- Setup Custom Theme--------------------------------------------------
+----------------------------------------------------------------------
+-- LSP
+vim.lsp.config.clangd = {
+  cmd = {"clangd", "--background-index"},
+  filetypes = {"c", "cpp"},
+}
+vim.lsp.enable("clangd");
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(event)
+    local opts = {buffer = event.buf}
+    -- Motion
+    vim.keymap.set("n", "gD", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "F12", vim.lsp.buf.definition, opts)
+    -- Editing
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+  end,
+})
+
+vim.diagnostic.enable(false)
+
+----------------------------------------------------------------------
+-- Setup Custom Theme
 -- :h group-name - shows names of groups with explanation
 -- :hi - to check all active groups
 vim.o.background = "dark"
-vim.o.cursorline = true
-vim.o.termguicolors = true
 
 local palette = {
 	brunwick_green = "#34554B",
@@ -120,6 +187,12 @@ local palette = {
 	mongoose = "#BCAC84",
 	black_olive = "#283021",
 	slate_grey = "#6B7991",
+
+  moonlit_silver = "#D8E2EB",
+  midnight_blue = "#2C3E50",
+  pale_mist = "#E8ECEF",
+  soft_bamboo = "#A8B5A2",
+  lunar_glow = "#F5F6E8",
 }
 
 local colors = {
@@ -152,7 +225,9 @@ local colors = {
 
 local function set_colors(mode)
   local c = colors
-  vim.api.nvim_set_hl(0, "Normal", { fg = c.fg, bg = c.bg })
+  vim.api.nvim_set_hl(0, "Normal", { fg = c.fg, bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalNC", { fg = c.fg, bg = "none" })
+  vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = c.fg, bg = "none" })
   vim.api.nvim_set_hl(0, "Cursor", { fg = c.bg, bg = c.cursor })
   vim.api.nvim_set_hl(0, "Visual", { bg = c.selection })
   vim.api.nvim_set_hl(0, "CursorLine", { bg = c.line_highlight })
