@@ -3,13 +3,13 @@
   font-size: 12px;
   min-height: 0px;
   border-radius: 0px;
-  color: #BCAC94;
+  color: #95B8D1;
 }
 
 #waybar {
   margin: 12px 12px 12px 12px;
   border-radius: 4px;
-  background: #191E15;
+  background: #1A1D26;
 }
 
 #pulseaudio,

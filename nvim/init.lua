@@ -193,41 +193,62 @@ local palette = {
   pale_mist = "#E8ECEF",
   soft_bamboo = "#A8B5A2",
   lunar_glow = "#F5F6E8",
+
+  moonlit_night = "#1A1D26",
+  misty_moonlight = "#C7CED8",
+  incense_purple = "#B49FCC",
+  sakura_petal = "#E8B4B8",
+  bamboo_mist = "#768C79",
+  moonlight_silver = "#C9D6E3",
+  river_slate = "#A0B2C5",
+  sandstone_beige = "#D4C5A0",
+  pale_lotus_blue = "#95B8D1",
+  soft_stone = "#AAAEB9",
+  moon_dust = "#D0D4DC",
+  ember_red = "#D88080",
 }
 
 local colors = {
-	bg = palette.log_cabin,
-	fg = palette.ash_gray,
+	bg = palette.moonlit_night,
+	--fg = palette.misty_moonlight,
+	fg = palette.pale_lotus_blue,
 	delimiter = palette.ash_gray,
-	cursor = "#A8B5A2", -- Soft lichenjk w
+	cursor = "#A8B5A2",
 	selection = palette.black_olive,
-	line_highlight = palette.black_olive,
-	keyword = palette.slate_grey,
-	string = palette.oxley, -- Bark brown
-	-- comment = "#5E7B5E", -- Mossy gray-green
-	comment = palette.field_drab,
-	func = palette.reseda_green,
-	variable = "#A8B5A2", -- Lichen
-	number = palette.mongoose,
-	constant = palette.mongoose,
-	special = palette.mongoose,
-	type = palette.brown, -- Forest green
-	operator = "#c1c99d", -- Light mossy text
+	line_highlight = palette.moon_duts,
+  line_number = palette.bamboo_mist,
+  curso_line_number = palette.sakura_petal,
+	keyword = palette.incense_purple,
+	str = palette.sakura_petal,
+	comment = palette.bamboo_mist,
+	func = palette.ember_red,
+	variable = fg,
+	number = palette.sakura_petal,
+	constant = palette.sakura_petal,
+	special = palette.sakura_petal,
+	type = palette.sandstone_beige,
+  --type = palette.pale_lotus_blue,
+	operator = palette.soft_stone,
 	tag = "#6B8E23", -- Olive green
 	attribute = "#A8B5A2", -- Lichen
 	border = palette.ash_gray,
 	panel_bg = "#223B34", -- Dark evergreen
-	status_bar = palette.dark_green,
-	status_bar_fg = "#D9E4D8", -- Light mossy text
-	tab_active = "#1A2F2A", -- Deep forest green
-	tab_inactive = "#2E3F38" -- Shaded evergreen
+	status_bar = palette.mi,
+	status_bar_fg = palette.misty_moonlight,
 }
 
 local function set_colors(mode)
   local c = colors
-  vim.api.nvim_set_hl(0, "Normal", { fg = c.fg, bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalNC", { fg = c.fg, bg = "none" })
-  vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = c.fg, bg = "none" })
+  local transperent = true
+  if transperent then
+    vim.api.nvim_set_hl(0, "Normal", { fg = c.fg, bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC", { fg = c.fg, bg = "none" })
+    vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = c.fg, bg = "none" })
+  else
+    vim.api.nvim_set_hl(0, "Normal", { fg = c.fg, bg = c.bg })
+    vim.api.nvim_set_hl(0, "NormalNC", { fg = c.fg, bg = c.bg })
+    vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = c.fg, bg = c.bg })
+  end
   vim.api.nvim_set_hl(0, "Cursor", { fg = c.bg, bg = c.cursor })
   vim.api.nvim_set_hl(0, "Visual", { bg = c.selection })
   vim.api.nvim_set_hl(0, "CursorLine", { bg = c.line_highlight })
@@ -235,9 +256,10 @@ local function set_colors(mode)
   vim.api.nvim_set_hl(0, "Statement", { fg = c.keyword})
   vim.api.nvim_set_hl(0, "PreProc", { fg = c.keyword})
   vim.api.nvim_set_hl(0, "Special", { fg = c.special})
-  vim.api.nvim_set_hl(0, "String", { fg = c.string })
+  vim.api.nvim_set_hl(0, "String", { fg = c.str })
   vim.api.nvim_set_hl(0, "Comment", { fg = c.comment})
   vim.api.nvim_set_hl(0, "Function", { fg = c.func })
+  vim.api.nvim_set_hl(0, "@lsp.type.macro.c", { fg = c.func })
   vim.api.nvim_set_hl(0, "Identifier", { fg = c.variable })
   vim.api.nvim_set_hl(0, "@variable", { fg = c.variable })
   vim.api.nvim_set_hl(0, "Number", { fg = c.number })
@@ -247,12 +269,10 @@ local function set_colors(mode)
   vim.api.nvim_set_hl(0, "Operator", { fg = c.operator })
   vim.api.nvim_set_hl(0, "htmlTag", { fg = c.tag })
   vim.api.nvim_set_hl(0, "htmlArg", { fg = c.attribute })
-  vim.api.nvim_set_hl(0, "LineNr", { fg = c.comment, bold = true })
-  vim.api.nvim_set_hl(0, "CursorLineNr", { fg = c.fg, bold = true })
+  vim.api.nvim_set_hl(0, "LineNr", { fg = c.line_number, bold = false })
+  vim.api.nvim_set_hl(0, "CursorLineNr", { fg = c.cursor_line_number, bold = true })
   vim.api.nvim_set_hl(0, "StatusLine", { fg = c.fg, bg = c.status_bar, bold = true})
   vim.api.nvim_set_hl(0, "StatusLineNC", { fg = c.fg, bg = c.status_bar })
-  vim.api.nvim_set_hl(0, "TabLineSel", { fg = c.fg, bg = c.tab_active })
-  vim.api.nvim_set_hl(0, "TabLine", { fg = c.fg, bg = c.tab_inactive })
   vim.api.nvim_set_hl(0, "VertSplit", { fg = c.border })
   vim.api.nvim_set_hl(0, "Pmenu", { fg = c.fg, bg = c.panel_bg })
   vim.api.nvim_set_hl(0, "PmenuSel", { fg = c.status_bar_fg, bg = c.status_bar })

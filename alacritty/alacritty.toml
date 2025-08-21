@@ -12,5 +12,5 @@ family = "Noto Sans Mono"
 style = "Regular"
 
 [colors.primary]
-background = "#191E15"
-foreground = "#B8BDB3"
+background = "#1A1D26"
+foreground = "#95B8D1"
