@@ -36,12 +36,14 @@ vim.opt.swapfile = false
 
 ----------------------------------------------------------------------
 -- Indentation
+vim.cmd("filetype indent off")
+vim.opt.expandtab = true
+vim.opt.cindent = false
+vim.opt.smartindent = false
+vim.opt.autoindent = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.opt.autoindent = true
 
 ----------------------------------------------------------------------
 -- Search
@@ -69,8 +71,8 @@ vim.opt.mouse = "a"
 ----------------------------------------------------------------------
 -- Keymaps
 -- Movement
-vim.keymap.set({"n", "v"}, "K","{", {remap = true})
-vim.keymap.set({"n", "v"}, "J", "}", {remap = true})
+vim.keymap.set({"n", "v"}, "K","5k", {remap = true})
+vim.keymap.set({"n", "v"}, "J", "5j", {remap = true})
 vim.keymap.set("n", "n", "nzzzv");
 vim.keymap.set("n", "N", "Nzzzv");
 
@@ -100,9 +102,13 @@ vim.defer_fn(function()
 
         auto_install = false,
 
+        indent = {
+          enable = false,
+        },
+
         highlight = {
             enable = true,
-            additional_vim_regex_highlighting = true,
+            additional_vim_regex_highlighting = false,
         },
     })
 end, 0)
@@ -212,7 +218,7 @@ local colors = {
 	bg = palette.moonlit_night,
 	--fg = palette.misty_moonlight,
 	fg = palette.pale_lotus_blue,
-	delimiter = palette.ash_gray,
+	delimiter = palette.pale_lotus_blue,
 	cursor = "#A8B5A2",
 	selection = palette.black_olive,
 	line_highlight = palette.moon_duts,
@@ -276,6 +282,8 @@ local function set_colors(mode)
   vim.api.nvim_set_hl(0, "VertSplit", { fg = c.border })
   vim.api.nvim_set_hl(0, "Pmenu", { fg = c.fg, bg = c.panel_bg })
   vim.api.nvim_set_hl(0, "PmenuSel", { fg = c.status_bar_fg, bg = c.status_bar })
+
+  vim.api.nvim_set_hl(0, "Error", { fg = c.delimeter, bg = "none" })
 end
 
 set_colors("dark")

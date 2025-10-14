@@ -6,7 +6,7 @@
   color: #95B8D1;
 }
 
-#waybar {
+window#waybar {
   margin: 12px 12px 12px 12px;
   border-radius: 4px;
   background: #1A1D26;
@@ -22,4 +22,16 @@
 #language {
   margin: 0px 3px;
   padding: 0px 12px;
+}
+
+#workspaces button.focused {
+    background: #64727D;
+    border-bottom: 3px solid white;
+    background-color: #E8B4B8;
+}
+
+#workspaces button.active {
+    color: red;
+    border-top: 3px solid #E8B4B8;
+    border-radius: 4px;
 }
