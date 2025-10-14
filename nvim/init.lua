@@ -98,7 +98,7 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- Treesitter
 vim.defer_fn(function()
     require("nvim-treesitter.configs").setup({
-        ensure_installed = { "c", "cpp", "lua" },
+        ensure_installed = { "c", "cpp", "lua", "markdown" },
 
         auto_install = false,
 
