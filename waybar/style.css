@@ -33,5 +33,5 @@ window#waybar {
 #workspaces button.active {
     color: red;
     border-top: 3px solid #E8B4B8;
-    border-radius: 4px;
+    border-radius: 0px 0px 2px 2px;
 }

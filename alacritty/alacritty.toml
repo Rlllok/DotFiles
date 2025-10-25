@@ -14,3 +14,10 @@ style = "Regular"
 [colors.primary]
 background = "#1A1D26"
 foreground = "#95B8D1"
+
+[colors.cursor]
+text = "#232323"
+cursor = "#F3F2CC"
+
+[colors.normal]
+cyan    = '#E8B4B8'

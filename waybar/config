@@ -25,8 +25,8 @@
   "hyprland/workspaces": {
       "format": "{icon}",
       "format-icons": {
-          "active": "",
-          "default": "",
+          "active": "󰽢",
+          "default": "󰽧",
       },
       "persistent-workspaces": {
           "*": [ 1,2,3 ]
@@ -37,9 +37,9 @@
         "format": " {short} {variant}",
     },
 
-  "modules-right": ["pulseaudio", "battery", "clock"],
+  "modules-right": ["pulseaudio", "backlight", "battery", "clock"],
   "pulseaudio": {
-    "format": "{icon}{volume}% ",
+    "format": "{volume}% {icon}",
     "format-muted": " 󰖁 0% ",
     "format-icons": {
       "headphone": "  ",
@@ -55,9 +55,13 @@
       ]
     },
   },
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", ""]
+  },
   "battery": {
-    "format": "{capacity} {icon}",
-    "format-icons": ["", "", "", "", ""]
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
   },
   "clock": {
     "format": "{:%I:%M %p} ",
