@@ -1,0 +1,47 @@
+configuration {
+  display-drun: "Application:";
+  show-icons: true;
+}
+
+@theme "/dev/null"
+
+* {
+  text-color: #C5D8E7;
+  background-color: #1A1D26;
+}
+
+window {
+  border: 2px;
+  width: 700px;
+  border: 2px solid;
+  border-color: #E8B4B8;
+  border-radius: 12px;
+}
+
+inputbar {
+  enabled: true;
+  padding: 0px 0px 0px 20px;
+  childer: [prompt, entry];
+}
+
+prompt {
+  background-color: inherit;
+}
+
+entry {
+  background-color: inherit;
+}
+
+mainbox {
+  enabled: true;
+  childreb: [inputbar, listview];
+}
+
+listview {
+  padding: 0px 0px 10px 40px;
+  lines: 10;
+}
+
+element {
+}
+
