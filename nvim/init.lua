@@ -284,6 +284,7 @@ local function set_colors(mode)
   vim.api.nvim_set_hl(0, "VertSplit", { fg = c.border })
   vim.api.nvim_set_hl(0, "Pmenu", { fg = c.fg, bg = c.panel_bg })
   vim.api.nvim_set_hl(0, "PmenuSel", { fg = c.status_bar_fg, bg = c.status_bar })
+  vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#E8B4B8" })
 
   vim.api.nvim_set_hl(0, "Error", { fg = c.delimeter, bg = "none" })
 end

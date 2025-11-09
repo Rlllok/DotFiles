@@ -1,13 +1,15 @@
+@theme "/dev/null"
 configuration {
   display-drun: "Application:";
   show-icons: true;
+  font: "Noto Sans Mono Regular 12";
 }
 
-@theme "/dev/null"
-
 * {
+  spacing: 0px;
+  padding: 0px 0px 0px 0px;
   text-color: #C5D8E7;
-  background-color: #1A1D26;
+  background-color: transparent;
 }
 
 window {
@@ -16,19 +18,24 @@ window {
   border: 2px solid;
   border-color: #E8B4B8;
   border-radius: 12px;
+  background-color: #1A1D26;
+  children: [inputbar, listview];
 }
 
 inputbar {
   enabled: true;
-  padding: 0px 0px 0px 20px;
-  childer: [prompt, entry];
+  background-color: #E8B4B855;
+  children: [prompt, entry];
 }
 
 prompt {
+  padding: 0px 0px 0px 10px;
+  text-color: inherit;
   background-color: inherit;
 }
 
 entry {
+  text-color: inherit;
   background-color: inherit;
 }
 
@@ -38,10 +45,16 @@ mainbox {
 }
 
 listview {
-  padding: 0px 0px 10px 40px;
+  padding: 0px 0px 10px 0px;
   lines: 10;
 }
 
 element {
+  padding: 0px 0px 0px 30px;
+  background-color: transparent;
+}
+
+element selected normal, element selected active {
+  background-color: #4E577288;
 }
 
