@@ -217,8 +217,6 @@ local palette = {
 
 local colors = {
 	bg = palette.moonlit_night,
-	--fg = palette.misty_moonlight,
-	--fg = palette.pale_lotus_blue,
   fg = "#C5D8E7",
 	delimiter = palette.pale_lotus_blue,
 	cursor = "#A8B5A2",
@@ -289,4 +287,127 @@ local function set_colors(mode)
   vim.api.nvim_set_hl(0, "Error", { fg = c.delimeter, bg = "none" })
 end
 
-set_colors("dark")
+-- set_colors("dark")
+-- ~/.config/nvim/colors/sakura-dawn-hc.lua
+-- Sakura Dawn High-Contrast — light theme with real readability 🌸
+
+vim.cmd("highlight clear")
+if vim.fn.exists("syntax_on") then vim.cmd("syntax reset") end
+vim.o.background = "light"
+vim.o.termguicolors = true
+vim.g.colors_name = "sakura-dawn-hc"
+
+local c = {
+  -- Backgrounds – slightly warmer and brighter than before
+  bg         = "#FDFCF9",  -- almost pure white, warm tone
+  fg         = "#2C313A",  -- strong dark gray (real text now)
+  fg_light   = "#4F5666",  -- secondary text
+  fg_lighter = "#6B7380",  -- line numbers, folded text
+
+  -- UI
+  sidebar    = "#F1EFEB",
+  statusline = "#E5E1DB",
+  visual     = "#E8B4B8",  -- sakura selection, stronger
+  cursorline = "#E8E5E0",
+  border     = "#D7D3CD",
+
+  -- Your beloved accent palette – intensified where needed
+  sakura     = "#E68A91",    -- sakura_petal, slightly more vivid
+  purple     = "#A67AB8",    -- incense_purple, richer
+  bamboo     = "#637B5F",    -- bamboo_mist, deeper green
+  blue       = "#7A9FC7",    -- pale_lotus_blue, more saturated
+  beige      = "#C9B07F",    -- sandstone_beige, warmer & stronger
+  slate      = "#8A9DB6",    -- river_slate
+  stone      = "#8C91A3",
+  red        = "#D85A5A",    -- ember_red, real red now
+}
+
+local hi = function(group, opts)
+  vim.api.nvim_set_hl(0, group, opts)
+end
+
+-- Editor core
+hi("Normal",       { fg = c.fg,       bg = c.bg })
+hi("Visual",       { bg = c.visual })
+hi("CursorLine",   { bg = c.cursorline })
+hi("CursorLineNr", { fg = c.fg,       bg = c.cursorline, bold = true })
+hi("LineNr",       { fg = c.fg_lighter })
+hi("Folded",       { fg = c.fg_light, bg = c.sidebar })
+hi("SignColumn",   { bg = c.bg })
+hi("ColorColumn",  { bg = "#F0EEEB" })
+
+-- Syntax – high contrast, same spirit
+hi("Comment",      { fg = c.bamboo, italic = true })
+
+hi("String",       { fg = c.beige })
+hi("Character",    { fg = c.beige })
+hi("Number",       { fg = c.blue })
+hi("Boolean",      { fg = c.blue })
+hi("Float",        { fg = c.blue })
+
+hi("Identifier",   { fg = c.fg })
+hi("Function",     { fg = c.bamboo, bold = true })
+
+hi("Statement",    { fg = c.purple, bold = true })
+hi("Conditional",  { fg = c.purple, bold = true })
+hi("Repeat",       { fg = c.purple, bold = true })
+hi("Label",        { fg = c.purple })
+hi("Keyword",      { fg = c.purple, bold = true })
+hi("Exception",    { fg = c.red, bold = true })
+
+hi("PreProc",      { fg = c.purple })
+hi("Include",      { fg = c.purple, bold = true })
+hi("Define",       { fg = c.purple })
+hi("Macro",        { fg = c.purple })
+
+hi("Type",         { fg = c.sakura, bold = true })
+hi("StorageClass", { fg = c.purple, bold = true })
+hi("Structure",    { fg = c.sakura })
+hi("Typedef",      { fg = c.sakura })
+
+hi("Special",      { fg = c.blue })
+hi("Operator",     { fg = c.stone })
+hi("Delimiter",    { fg = c.stone })
+
+hi("Error",        { fg = c.red, bold = true, underline = true })
+hi("Todo",         { fg = c.bg, bg = c.purple, bold = true })
+
+-- UI elements
+hi("Pmenu",        { fg = c.fg,       bg = "#F6F4F1" })
+hi("PmenuSel",     { fg = c.bg,       bg = c.sakura, bold = true })
+hi("PmenuSbar",    { bg = c.sidebar })
+hi("PmenuThumb",   { bg = c.fg_light })
+
+hi("StatusLine",   { fg = c.fg,       bg = c.statusline, bold = true })
+hi("StatusLineNC", { fg = c.fg_light, bg = c.sidebar })
+hi("TabLineSel",   { fg = c.fg,       bg = c.bg,         bold = true })
+hi("TabLine",      { fg = c.fg_light, bg = c.sidebar })
+hi("TabLineFill",  { bg = c.sidebar })
+
+hi("VertSplit",    { fg = c.border })
+hi("WinSeparator",{ fg = c.border })
+
+hi("NormalFloat",  { fg = c.fg, bg = "#F8F6F3" })
+hi("FloatBorder",  { fg = c.border })
+
+-- Diagnostics & LSP
+hi("DiagnosticError",   { fg = c.red })
+hi("DiagnosticWarn",    { fg = "#B89F2B" })
+hi("DiagnosticInfo",    { fg = c.blue })
+hi("DiagnosticHint",    { fg = c.stone })
+hi("DiagnosticUnderlineError", { undercurl = true, sp = c.red })
+
+-- Treesitter (extra punch)
+hi("@variable",            { fg = c.fg })
+hi("@variable.parameter",  { fg = c.fg_light, italic = true })
+hi("@property",            { fg = c.slate })
+hi("@function.builtin",    { fg = c.bamboo, bold = true })
+hi("@keyword.return",      { fg = c.purple, bold = true })
+hi("@punctuation.bracket", { fg = c.stone })
+
+-- Git
+hi("GitSignsAdd",          { fg = c.bamboo })
+hi("GitSignsChange",       { fg = c.blue })
+hi("GitSignsDelete",       { fg = c.red })
+
+print("Sakura Dawn High-Contrast loaded – sharp, beautiful, and actually readable now!")

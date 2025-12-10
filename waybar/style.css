@@ -1,37 +1,106 @@
+/* ~/.config/waybar/style.css
+   Sakura Dawn – High-Contrast Light for Waybar */
+
 * {
-  font-family: "Noto Sans Mono";
-  font-size: 12px;
-  min-height: 0px;
-  border-radius: 0px;
-  color: #95B8D1;
+    font-family: "JetBrains Mono", "Symbols Nerd Font", sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
 }
 
 window#waybar {
-  margin: 12px 12px 12px 12px;
-  border-radius: 0px;
-  background: #1A1D26;
+    background: #FDFCF9;        /* main bg */
+    color: #2C313A;             /* main text */
+    border-bottom: 2px solid #E5E1DB;
 }
 
-#pulseaudio,
-#battery,
-#clock,
-#network,
-#cpu,
-#memory,
-#workspaces,
-#language {
-  margin: 0px 3px;
-  padding: 0px 12px;
+tooltip {
+    background: #F8F6F3;
+    border: 1px solid #D7D3CD;
+    color: #2C313A;
 }
 
-#workspaces button.focused {
-    background: #64727D;
-    border-bottom: 3px solid white;
-    background-color: #E8B4B8;
+/* Workspaces */
+#workspaces button {
+    padding: 0 10px;
+    color: #6B7380;
+    background: transparent;
 }
 
+#workspaces button.focused,
 #workspaces button.active {
-    color: red;
-    border-top: 3px solid #E8B4B8;
-    border-radius: 0px 0px 2px 2px;
+    color: #2C313A;
+    background: #FFE6E8;        /* sakura highlight */
+    border-bottom: 3px solid #FF8A95;
+}
+
+#workspaces button.urgent {
+    color: #D85A5A;
+    background: #FFE6E8;
+}
+
+/* Modules */
+#mode, #clock, #cpu, #memory, #temperature,
+#backlight, #pulseaudio, #network, #battery,
+#tray, #custom-power, #custom-updates {
+    padding: 0 12px;
+    margin: 4px 4px;
+    background: #E5E1DB;
+    color: #2C313A;
+    border-radius: 8px;
+}
+
+/* Individual module colors */
+#clock { color: #2C313A; }
+
+#cpu { color: #7A9FC7; }          /* blue */
+#memory { color: #C08F5F; }
+
+#temperature.critical { color: #D85A5A; }
+
+#pulseaudio { color: #637B5F; }   /* bamboo green */
+#pulseaudio.muted { color: #888888; }
+
+#network.disconnected { color: #D85A5A; }
+
+#battery.charging { color: #637B5F; }
+#battery.critical { color: #D85A5A; background: #FFE6E8; }
+
+#custom-updates {
+    color: #A67AB8;               /* incense purple */
+}
+
+/* Tray */
+#tray menu {
+    background: #F8F6F3;
+    border: 1px solid #D7D3CD;
+}
+
+/* Current window title (optional) */
+#window {
+    font-weight: bold;
+    color: #2C313A;
+    padding: 0 16px;
+}
+
+/* Power menu / logout button */
+#custom-power {
+    color: #D85A5A;
+    background: #FFE6E8;
+    border-radius: 8px;
+    padding: 0 14px;
+    margin-right: 8px;
+}
+
+/* Optional: make focused module pop more */
+#workspaces button.focused,
+#clock:hover,
+#custom-power:hover {
+    background: #FF8A95;
+    color: #000000;
+    transition: all 0.2s ease;
 }

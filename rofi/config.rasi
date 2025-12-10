@@ -1,60 +1,77 @@
-@theme "/dev/null"
-configuration {
-  display-drun: "Application:";
-  show-icons: true;
-  font: "Noto Sans Mono Regular 12";
-}
+/* ~/.config/rofi/sakura-dawn.rasi
+   Fixed & fully compatible with all Rofi versions */
 
 * {
-  spacing: 0px;
-  padding: 0px 0px 0px 0px;
-  text-color: #C5D8E7;
-  background-color: transparent;
+    font:            "JetBrains Mono SemiBold 13";
+
+    background:      #FDFCF9;
+    background-alt:  #F8F6F3;
+    foreground:      #2C313A;
+    selected:        #FF8A95;    /* bright sakura */
+    urgent:          #D85A5A;
+    active:          #7A9FC7;
+
+    margin:          0;
+    padding:         0;
+    spacing:         0;
 }
 
 window {
-  border: 2px;
-  width: 700px;
-  border: 2px solid;
-  border-color: #E8B4B8;
-  border-radius: 12px;
-  background-color: #1A1D26;
-  children: [inputbar, listview];
-}
+    width:           480px;
+    transparency:    "real";
+    background-color:@background;
 
-inputbar {
-  enabled: true;
-  background-color: #E8B4B855;
-  children: [prompt, entry];
-}
-
-prompt {
-  padding: 0px 0px 0px 10px;
-  text-color: inherit;
-  background-color: inherit;
-}
-
-entry {
-  text-color: inherit;
-  background-color: inherit;
+    /* Fixed syntax – works on Rofi 1.6+ and newer */
+    border:          2px;
+    border-color:    #E5E1DB;
+    border-radius:   12px;
+    padding:         12px;
 }
 
 mainbox {
-  enabled: true;
-  childreb: [inputbar, listview];
+    background-color: @background;
+    padding:          12px;
+}
+
+inputbar {
+    background-color: @background-alt;
+    border:           1px;
+    border-color:     #E5E1DB;
+    border-radius:    8px;
+    padding:          12px 16px;
+    children:         [ entry ];
+}
+
+entry {
+    placeholder:       "Search…";
+    placeholder-color: #6B7380;
+    color:             @foreground;
 }
 
 listview {
-  padding: 0px 0px 10px 0px;
-  lines: 10;
+    lines:    10;
+    columns:  1;
+    spacing:  6px;
+    margin:   12px 0 0 0;
 }
 
 element {
-  padding: 0px 0px 0px 30px;
-  background-color: transparent;
+    padding:       12px 16px;
+    border-radius: 8px;
+    text-color:    @foreground;
 }
 
-element selected normal, element selected active {
-  background-color: #4E577288;
+element selected, element selected.normal {
+    background-color: @selected;
+    text-color:       #000000;
 }
 
+element urgent {
+    background-color: @urgent;
+    text-color:       #000000;
+}
+
+element active {
+    background-color: @active;
+    text-color:       #000000;
+}

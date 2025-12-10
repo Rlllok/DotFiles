@@ -11,13 +11,53 @@ size = 11.0
 family = "Noto Sans Mono"
 style = "Regular"
 
-[colors.primary]
-background = "#1A1D26"
-foreground = "#95B8D1"
+# Sakura Dawn – High-Contrast Light Theme
+# Perfect match for your Neovim setup, with super-visible cursor
 
-[colors.cursor]
-text = "#232323"
-cursor = "#F3F2CC"
+[colors.primary]
+background = "#FDFCF9"
+foreground = "#2C313A"
 
 [colors.normal]
-cyan    = '#E8B4B8'
+black   = "#E5E1DB"
+red     = "#D85A5A"    # ember_red
+green   = "#637B5F"    # bamboo_mist
+yellow  = "#C9B07F"    # sandstone_beige
+blue    = "#7A9FC7"    # pale_lotus_blue
+magenta = "#A67AB8"    # incense_purple
+cyan    = "#8A9DB6"    # river_slate
+white   = "#2C313A"
+
+[colors.bright]
+black   = "#6B7380"
+red     = "#FF6B7A"
+green   = "#738F6F"
+yellow  = "#D9C28F"
+blue    = "#8AB0DB"
+magenta = "#B88FCA"
+cyan    = "#9AB0CC"
+white   = "#1E2229"
+
+[colors.selection]
+text       = "#000000"
+background = "#E8B4B8"
+
+[colors.search.matches]
+foreground = "#FDFCF9"
+background = "#D85A5A"
+
+[colors.search.focused_match]
+foreground = "#000000"
+background = "#FF8A95"
+
+[colors.cursor]
+text   = "#000000"
+cursor = "#FF8A95"    # bright sakura pink – impossible to miss
+
+[colors.line_indicator]
+background = "#FFE6E8"   # subtle sakura-tinted current line
+
+# Optional: cursor style
+[cursor.style]
+shape = "Block"          # or "Beam" / "Underline"
+blinking = "Off"         # change to "On" if you like blinking
