@@ -2,24 +2,24 @@ add_newline = true
 command_timeout = 200
 format = "[$directory$git_branch$git_status]($style)$character"
 
-palette = "moon"
+palette = "yellow"
 
-[palettes.moon]
-sakura_petal = "#E8B4B8"
+[palettes.yellow]
+yellow = "#fcbf3b"
 
 [character]
 error_symbol = "[✗](bold)"
-success_symbol = "[❯](bold sakura_petal)"
+success_symbol = "[❯](bold yellow)"
 
 [directory]
 truncation_length = 2
 truncation_symbol = "…/"
-repo_root_style = "bold sakura_petal"
+repo_root_style = "bold yellow"
 repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
 format = "[$branch]($style) "
-style = "italic sakura_petal"
+style = "italic yellow"
 
 [git_status]
 format     = '[$all_status]($style)'

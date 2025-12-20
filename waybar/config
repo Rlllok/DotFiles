@@ -3,7 +3,7 @@
   "position": "top",
   "reload_style_on_change": true,
 
-  "modules-left": ["network", "memory", "cpu", "hyprland/language"],
+  "modules-left": ["network", "memory", "cpu"],
   "network": {
     "format-wifi": " 󰤨 {essid} ",
     "format-ethernet": " Wired ",
@@ -37,7 +37,7 @@
         "format": " {short} {variant}",
     },
 
-  "modules-right": ["pulseaudio", "backlight", "battery", "clock"],
+  "modules-right": ["pulseaudio", "backlight", "hyprland/language", "battery", "clock"],
   "pulseaudio": {
     "format": "{volume}% {icon}",
     "format-muted": " 󰖁 0% ",
