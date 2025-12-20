@@ -22,6 +22,25 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim",dependencies = { "nvim-lua/plenary.nvim" }
   },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {}, -- Empty opts uses default configuration
+    config = function(_, opts)
+    require("ibl").setup({
+      enabled = false,
+      indent = {
+        char = '│',
+        smart_indent_cap = true,
+        priority = 2,
+      },
+      scope = {
+        show_start = true,
+        show_end = true,
+      }
+    })
+    end,
+  },
   "folke/zen-mode.nvim",
 })
 
@@ -68,6 +87,7 @@ vim.opt.autoread = true
 vim.opt.autochdir = false
 vim.opt.path:append("**")
 vim.opt.mouse = "a"
+vim.opt.completeopt = {"menu", "noinsert", "noselect"}
 
 ----------------------------------------------------------------------
 -- Keymaps
@@ -159,16 +179,23 @@ vim.lsp.enable("clangd");
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
+    vim.lsp.completion.enable(true, event.data.client_id, event.buf, {
+      autotrigger = false,
+    })
+
     local opts = {buffer = event.buf}
     -- Motion
-    vim.keymap.set("n", "gD", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "F12", vim.lsp.buf.definition, opts)
+    vim.keymap.set("i", "<C-space>", vim.lsp.completion.get, opts)
+    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "<C-h>", vim.lsp.buf.hover, opts)
     -- Editing
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
   end,
 })
 
-vim.diagnostic.enable(false)
+vim.diagnostic.enable(true)
 
 ----------------------------------------------------------------------
 -- Setup Custom Theme
