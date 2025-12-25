@@ -160,10 +160,12 @@ function SetBuildTargetKeybind()
   local file_path = vim.fn.getcwd() .. "/.nvim.project"
   if vim.fn.filereadable(file_path) then
     local file = io.open(file_path)
-    local content = file:read("*all")
-    io.close(file)
-    for word in content:gmatch("target = \"(%a+)\"") do
-      target = word
+    if file then
+      local content = file:read("*all")
+      for word in content:gmatch("target = \"(%a+)\"") do
+        target = word
+      end
+      io.close(file)
     end
   end
 
