@@ -11,7 +11,7 @@
 
 window#waybar {
     background: #32383b;
-    color: #fcbf3b;
+    color: #f9e2af;
     border-bottom: 1px solid #fcbf3b;
 }
 
@@ -30,7 +30,6 @@ tooltip {
 
 #workspaces button.focused,
 #workspaces button.active {
-    color: #fcbf3b;
     background: #32383b;
     border-bottom: 3px solid #fcbf3b;
 }
@@ -46,7 +45,6 @@ tooltip {
     padding: 0 12px;
     margin: 4px 4px;
     background: #32383b;
-    color: #fcbf3b;
     border-radius: 8px;
 }
 

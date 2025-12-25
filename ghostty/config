@@ -1,0 +1,18 @@
+theme = yellow
+
+# -- Font ------------------------------------------------------------
+font-size = 11
+font-family = "Noto Sans Mono"
+font-feature = -liga
+
+# -- Cursor ----------------------------------------------------------
+cursor-style       = block
+cursor-style-blink = false
+
+shell-integration-features = no-cursor
+
+# -- Animation -------------------------------------------------------
+custom-shader-animation = always
+
+custom-shader = ./shaders/custom_cursor_shader.glsl
+custom-shader = ./shaders/custom_cursor_ripple.glsl
