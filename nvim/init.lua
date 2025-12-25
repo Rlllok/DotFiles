@@ -107,7 +107,7 @@ vim.keymap.set("n", "<leader>wq", function() vim.cmd("q") end)
 
 -- Telescope
 local telescope_builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files)
+vim.keymap.set("n", "<leader>ff", function() telescope_builtin.find_files({hidden = true}) end)
 vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
 
 vim.keymap.set("n", "<leader>-", "70A-<Esc>70d|", { remap = true })
@@ -152,22 +152,34 @@ end
 
 vim.keymap.set("n", "<space>wt", OpenTerminal)
 
-vim.keymap.set("n", "<space>bb", function()
-	OpenTerminal()
-	if system_name == "Windows_NT" then
-		vim.fn.chansend(job_id, {"build main\r"})
-	elseif system_name == "Linux" then
-		vim.fn.chansend(job_id, {"sh build.sh main\r"})
-	end
-end)
-vim.keymap.set("n", "<space>br", function()
-	OpenTerminal()
-	if system_name == "Windows_NT" then
-		vim.fn.chansend(job_id, {"build\\main\r"})
-	elseif system_name == "Linux" then
-		vim.fn.chansend(job_id, {"./build/main\r"})
-	end
-end)
+----------------------------------------------------------------------
+-- Project
+function SetBuildTargetKeybind()
+  local target = "main"
+
+  local file_path = vim.fn.getcwd() .. "/.nvim.project"
+  if vim.fn.filereadable(file_path) then
+    local file = io.open(file_path)
+    local content = file:read("*all")
+    io.close(file)
+    for word in content:gmatch("target = \"(%a+)\"") do
+      target = word
+    end
+  end
+
+  vim.keymap.set("n", "<space>bb", function()
+    OpenTerminal()
+    if system_name == "Windows_NT" then
+      vim.fn.chansend(job_id, {"build" .. target .. "\r"})
+    elseif system_name == "Linux" then
+      vim.fn.chansend(job_id, {"sh build.sh " .. target .. "\r"})
+    end
+  end)
+end
+
+vim.keymap.set("n", "<space>pr", SetBuildTargetKeybind)
+
+vim.api.nvim_create_autocmd("VimEnter", {callback = SetBuildTargetKeybind})
 
 ----------------------------------------------------------------------
 -- LSP
