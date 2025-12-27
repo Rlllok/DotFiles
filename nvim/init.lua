@@ -172,7 +172,7 @@ function SetBuildTargetKeybind()
   vim.keymap.set("n", "<space>bb", function()
     OpenTerminal()
     if system_name == "Windows_NT" then
-      vim.fn.chansend(job_id, {"build" .. target .. "\r"})
+      vim.fn.chansend(job_id, {"build " .. target .. "\r"})
     elseif system_name == "Linux" then
       vim.fn.chansend(job_id, {"sh build.sh " .. target .. "\r"})
     end
