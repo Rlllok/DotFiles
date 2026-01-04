@@ -201,10 +201,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local opts = {buffer = event.buf}
     -- Motion
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "F12", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+    -- Help
     vim.keymap.set("i", "<C-space>", vim.lsp.completion.get, opts)
-    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-    vim.keymap.set("n", "<C-h>", vim.lsp.buf.hover, opts)
+    vim.keymap.set("i", "<C-h>",     vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "<C-h>",     vim.lsp.buf.hover, opts)
     -- Editing
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
   end,
