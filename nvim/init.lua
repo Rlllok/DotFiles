@@ -74,6 +74,7 @@ vim.opt.incsearch = true
 -- Visual
 vim.opt.termguicolors = true
 vim.opt.showmatch = true
+vim.opt.guicursor = "n-v:block,i:hor20"
 
 ----------------------------------------------------------------------
 -- Files

@@ -56,6 +56,7 @@ cursor = "#FF8A95"    # bright sakura pink – impossible to miss
 [colors.line_indicator]
 background = "#FFE6E8"   # subtle sakura-tinted current line
 
-[cursor.style]
-shape = "Block"
-blinking = "Off"
+[cursor]
+style.shape = "Underline"
+style.blinking = "Off"
+thickness = 0.2
