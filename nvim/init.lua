@@ -181,21 +181,18 @@ function SetBuildTargetKeybind()
       build_cmd = string.format("sh build.sh %s nul 2>&1", target)
     end
 
+    local current_time = vim.fn.strftime("%H:%M:%S")
     local output = vim.fn.system(build_cmd)
 
-    if vim.fn.shell_error ~= 0 then
-      vim.fn.setqflist({}, "r", {
-        title = string.format("[%s] -- Compilation Diagnostic --", target),
-        lines = vim.split(output, "\n"),
-      })
-      vim.cmd("silent! wincmd o")
-      vim.cmd("silent! vert cwindow")
-      vim.cmd("silent! wincmd p")
-      vim.cmd("silent! wincmd =")
-    else
-      vim.fn.setqflist({}, "r")
-      print("[%s] -- Succeeded -- ")
-    end
+    vim.fn.setqflist({}, "r", {
+      title = string.format("[%s] [%s] -- Compilation Result --", target, current_time),
+      lines = vim.split(output, "\n"),
+    })
+
+    vim.cmd("silent! wincmd o")
+    vim.cmd("silent! vert copen")
+    vim.cmd("silent! wincmd p")
+    vim.cmd("silent! wincmd =")
   end)
 end
 
