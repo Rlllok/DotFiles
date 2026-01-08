@@ -170,12 +170,31 @@ function SetBuildTargetKeybind()
     end
   end
 
+
   vim.keymap.set("n", "<space>bb", function()
-    OpenTerminal()
+    -- OpenTerminal()
+
+    local build_cmd = "";
     if system_name == "Windows_NT" then
-      vim.fn.chansend(job_id, {"build " .. target .. "\r"})
+      build_cmd = string.format("build %s nul 2>&1", target)
     elseif system_name == "Linux" then
-      vim.fn.chansend(job_id, {"sh build.sh " .. target .. "\r"})
+      build_cmd = string.format("sh build.sh %s nul 2>&1", target)
+    end
+
+    local output = vim.fn.system(build_cmd)
+
+    if vim.fn.shell_error ~= 0 then
+      vim.fn.setqflist({}, "r", {
+        title = string.format("[%s] -- Compilation Diagnostic --", target),
+        lines = vim.split(output, "\n"),
+      })
+      vim.cmd("silent! wincmd o")
+      vim.cmd("silent! vert cwindow")
+      vim.cmd("silent! wincmd p")
+      vim.cmd("silent! wincmd =")
+    else
+      vim.fn.setqflist({}, "r")
+      print("[%s] -- Succeeded -- ")
     end
   end)
 end
