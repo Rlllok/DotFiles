@@ -54,6 +54,9 @@ vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 8
 vim.opt.swapfile = false
 
+--vim.o.langmap = "АБВГДЕЖЗИІЙКЛМНОПРСТУФХЦЧШЩЬЮЯабвгдежзиіїйклмнопрстуфхцчшщьюя,ҐЄІЇґєїі:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,."
+--vim.o.langremap = true
+
 ----------------------------------------------------------------------
 -- Indentation
 vim.cmd("filetype indent off")
