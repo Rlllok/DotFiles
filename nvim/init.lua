@@ -23,34 +23,43 @@ require("lazy").setup({
     "nvim-telescope/telescope.nvim",dependencies = { "nvim-lua/plenary.nvim" }
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {}, -- Empty opts uses default configuration
-    config = function(_, opts)
-    require("ibl").setup({
-      enabled = false,
-      indent = {
-        char = '│',
-        smart_indent_cap = true,
-        priority = 2,
+    "saghen/blink.cmp",
+    version = "1.*",
+    opts = {
+      keymap = {
+        preset = "default",
       },
-      scope = {
-        show_start = true,
-        show_end = true,
-      }
-    })
-    end,
-  },
-  "folke/zen-mode.nvim",
+      appearance = {
+          use_nvim_cmp_as_default = true,
+          nerd_font_variant = "mono"
+      },
+      completion = {
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
+        menu = {
+          auto_show = false
+        },
+      },
+      sources = {
+        default = {"lsp", "path"},
+      },
+      fuzzy = { implementation = "prefer_rust_with_warning" },
+      signature = { enabled = true },
+    },
+    opts_extend = { "sources.default" },
+  }
 })
 
 ----------------------------------------------------------------------
 -- Main
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.numberwidth = 2
 vim.opt.cursorline = true
 vim.opt.wrap = false
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.swapfile = false
 
@@ -78,6 +87,17 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.showmatch = true
 vim.opt.guicursor = "n-v:block,i:hor20"
+vim.opt.listchars = "tab: ,multispace:| "
+vim.opt.list = true
+
+local hightlight_group = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
+vim.api.nvim_create_autocmd("TextYankPost", {
+  pattern = "*",
+  callback = function ()
+    vim.highlight.on_yank({timeout = 160})
+  end,
+  group = highligh_group,
+})
 
 ----------------------------------------------------------------------
 -- Files
@@ -222,7 +242,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     -- Help
-    vim.keymap.set("i", "<C-space>", vim.lsp.completion.get, opts)
+    --vim.keymap.set("i", "<C-space>", vim.lsp.completion.get, opts)
     vim.keymap.set("i", "<C-h>",     vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "<C-h>",     vim.lsp.buf.hover, opts)
     -- Editing
@@ -230,6 +250,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.diagnostic.enable(false)
+vim.diagnostic.enable(true)
+vim.diagnostic.config({virtual_text = true})
 
 vim.cmd("colorscheme yellow")
