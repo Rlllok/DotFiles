@@ -3,17 +3,17 @@ vim.cmd("highlight clear")
 vim.o.background = "dark"
 
 local colors = {
-  bg      = "#32383b",
-  fg      = "#f9e2af",
-  yellow  = "#fcbf3b",
-  red     = "#f38ba8",
-  green   = "#70abaf",
-  blue    = "#ff6542",
-  purple  = "#cba6f7",
-  cyan    = "#94e2d5",
-  gray    = "#585b70",
-  comment = "#6c7086",
-  line    = "#40484c",
+  bg      = "#2c3235",
+  fg      = "#ffe9c4",
+  yellow  = "#ffd866",
+  red     = "#ff87a8",
+  green   = "#8acfd1",
+  blue    = "#ff8a66",
+  purple  = "#d5b9ff",
+  cyan    = "#a5f2e0",
+  gray    = "#6b6f88",
+  comment = "#8a8fa3",
+  line    = "#3a4246",
 }
 
 local function set_hl(group, attrs)

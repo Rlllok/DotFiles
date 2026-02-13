@@ -23,6 +23,9 @@ require("lazy").setup({
     "nvim-telescope/telescope.nvim",dependencies = { "nvim-lua/plenary.nvim" }
   },
   {
+    "nvim-mini/mini.align", version = "*"
+  },
+  {
     "saghen/blink.cmp",
     version = "1.*",
     opts = {
@@ -51,6 +54,8 @@ require("lazy").setup({
     opts_extend = { "sources.default" },
   }
 })
+
+require("mini.align").setup({})
 
 ----------------------------------------------------------------------
 -- Main

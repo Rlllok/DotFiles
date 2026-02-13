@@ -5,20 +5,24 @@
 
   "modules-left": ["network", "memory", "cpu"],
   "network": {
+    "format": "{ifname}",
     "format-wifi": " 󰤨 {essid} ",
     "format-ethernet": " Wired ",
     "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
     "format-linked": " 󱘖 {ifname} (No IP) ",
     "format-disconnected": "  Disconnected ",
+    "format-disabled": "WiFi Disabled",
     "format-alt": " 󰤨 {signalStrength}% ",
-    "interval": 1
+    "interval":60 
   },
   "memory": {
     "format": "  {used:0.1f}G/{total:0.1f}G ",
+    "interval": 30,
   },
   "cpu": {
     "format": "  {usage}% ",
-    "tooltip": true
+    "tooltip": true,
+    "interval": 30,
   },
 
   "modules-center": ["hyprland/workspaces"],
@@ -65,7 +69,7 @@
   },
   "clock": {
     "format": "{:%d %B %Y  %I:%M %p }",
-    "interval": 1,   
+    "interval": 60,   
     "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
         "format": {
