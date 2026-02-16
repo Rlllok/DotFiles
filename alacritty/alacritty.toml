@@ -14,27 +14,27 @@ size = 13.0
 family = "Monofur Nerd Font Mono"
 
 [colors.primary]
-background = "#32383b"
+background = "#1e2528"
 foreground = "#f9e2af"
 
 [colors.normal]
-black   = "#32383b"
-red     = "#f38ba8"
-green   = "#70abaf"
-yellow = "#00ff00"
-blue    = "#ff6542"
+black   = "#2c3235"
+red     = "#ff87a8"
+green   = "#8acfd1"
+yellow  = "#00ff00"
+blue    = "#ff8a66"
 magenta = "#ff0000"
-cyan  = "#fcbf3b"
+cyan    = "#fcbf3b"
 white   = "#0000ff"
 
 [colors.bright]
-black   = "#32383b"
-red     = "#f38ba8"
-green   = "#70abaf"
-yellow = "#00ff00"
-blue    = "#ff6542"
+black   = "#2c3235"
+red     = "#ff87a8"
+green   = "#8acfd1"
+yellow  = "#00ff00"
+blue    = "#ff8a66"
 magenta = "#ff0000"
-cyan  = "#fcbf3b"
+cyan    = "#fcbf3b"
 white   = "#0000ff"
 
 [colors.selection]

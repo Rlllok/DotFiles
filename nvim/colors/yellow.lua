@@ -3,7 +3,7 @@ vim.cmd("highlight clear")
 vim.o.background = "dark"
 
 local colors = {
-  bg      = "#2c3235",
+  bg      = "#1e2528",
   fg      = "#ffe9c4",
   yellow  = "#ffd866",
   red     = "#ff87a8",
@@ -91,3 +91,8 @@ set_hl("DiagnosticError",   { fg = colors.red })
 set_hl("DiagnosticWarn",    { fg = colors.yellow })
 set_hl("DiagnosticInfo",    { fg = colors.blue })
 set_hl("DiagnosticHint",    { fg = colors.cyan })
+
+-- Treesitter Context
+set_hl("TreesitterContext",           { bg = colors.bg })
+set_hl("TreesitterContextLineNumber", { bg = colors.bg })
+set_hl("TreesitterContextSeparator",  { bg = colors.bg })

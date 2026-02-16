@@ -18,13 +18,13 @@ window {
   border: 2px solid;
   border-color: #fcbf3b;
   border-radius: 12px;
-  background-color: #32383b;
+  background-color: #1e2528;
   children: [inputbar, listview];
 }
 
 inputbar {
   enabled: true;
-  background-color: #32383b;
+  background-color: #1e2528;
   children: [prompt, entry];
 }
 

@@ -18,7 +18,25 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"},
+	{
+    "nvim-treesitter/nvim-treesitter",
+    branch = 'master',
+    lazy = false,
+    build = ":TSUpdate"
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("treesitter-context").setup({
+        line_numbers = true,
+        mode = "topline",
+        separator = '─',
+        trim_scopre = "outer",
+        max_lines = 2,
+      })
+    end,
+  },
   {
     "nvim-telescope/telescope.nvim",dependencies = { "nvim-lua/plenary.nvim" }
   },
@@ -42,11 +60,11 @@ require("lazy").setup({
           auto_show_delay_ms = 200,
         },
         menu = {
-          auto_show = false
+          auto_show = true
         },
       },
       sources = {
-        default = {"lsp", "path"},
+        default = {"lsp", "path", "buffer"},
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
       signature = { enabled = true },
@@ -121,10 +139,10 @@ vim.opt.completeopt = {"menu", "noinsert", "noselect"}
 ----------------------------------------------------------------------
 -- Keymaps
 -- Movement
-vim.keymap.set({"n", "v"}, "K","5k", {remap = true})
-vim.keymap.set({"n", "v"}, "J", "5j", {remap = true})
-vim.keymap.set("n", "n", "nzzzv");
-vim.keymap.set("n", "N", "Nzzzv");
+vim.keymap.set({"n", "v"}, "J","<C-d>zz", {noremap = true, remap = true})
+vim.keymap.set({"n", "v"}, "K","<C-u>zz", {noremap = true, remap = true})
+vim.keymap.set("n", "n", "nzzzv", {noremap = true, remap = true});
+vim.keymap.set("n", "N", "Nzzzv", {noremap = true, remap = true});
 
 -- Delete/Yanking
 vim.keymap.set({"n", "v"}, "<leader>d", '"_d');
@@ -234,7 +252,7 @@ vim.lsp.config.clangd = {
   cmd = {"clangd", "--background-index"},
   filetypes = {"c", "cpp"},
 }
-vim.lsp.enable("clangd");
+-- vim.lsp.enable("clangd");
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)

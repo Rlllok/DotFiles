@@ -10,13 +10,13 @@
 }
 
 window#waybar {
-    background: #32383b;
+    background: #1e2528;
     color: #f9e2af;
     border-bottom: 1px solid #fcbf3b;
 }
 
 tooltip {
-    background: #32383b;
+    background: #1e2528;
     border: 1px solid #D7D3CD;
     color: #fcbf3b;
 }
@@ -30,7 +30,8 @@ tooltip {
 
 #workspaces button.focused,
 #workspaces button.active {
-    background: #32383b;
+    color: #fcbf3b;
+    background: #1e2528;
     border-bottom: 3px solid #fcbf3b;
 }
 
@@ -44,7 +45,7 @@ tooltip {
 #tray, #custom-power, #custom-updates {
     padding: 0 12px;
     margin: 4px 4px;
-    background: #32383b;
+    background: #1e2528;
     border-radius: 8px;
 }
 
