@@ -25,19 +25,6 @@ require("lazy").setup({
     build = ":TSUpdate"
   },
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("treesitter-context").setup({
-        line_numbers = true,
-        mode = "topline",
-        separator = '─',
-        trim_scopre = "outer",
-        max_lines = 2,
-      })
-    end,
-  },
-  {
     "nvim-telescope/telescope.nvim",dependencies = { "nvim-lua/plenary.nvim" }
   },
   {
@@ -70,7 +57,7 @@ require("lazy").setup({
       signature = { enabled = true },
     },
     opts_extend = { "sources.default" },
-  }
+  },
 })
 
 require("mini.align").setup({})
@@ -110,8 +97,8 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.showmatch = true
 vim.opt.guicursor = "n-v:block,i:hor20"
-vim.opt.listchars = "tab: ,multispace:| "
-vim.opt.list = true
+vim.opt.listchars = "tab: ,multispace:┊ "
+vim.opt.list = false
 
 local hightlight_group = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -276,4 +263,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.diagnostic.enable(true)
 vim.diagnostic.config({virtual_text = true})
 
-vim.cmd("colorscheme yellow")
+vim.cmd("colorscheme yellow_min")

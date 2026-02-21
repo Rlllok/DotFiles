@@ -31,7 +31,7 @@ set_hl("Boolean",    { fg = colors.yellow })
 set_hl("Float",      { fg = colors.yellow })
 
 set_hl("Identifier", { fg = colors.fg })
-set_hl("Function",   { fg = colors.blue })
+set_hl("Function",   { fg = colors.fg })
 
 set_hl("Statement",  { fg = colors.red })
 set_hl("Conditional",{ fg = colors.red })
@@ -77,7 +77,7 @@ set_hl("PmenuThumb",   { bg = colors.fg })
 
 -- Treesitter (modern syntax highlighting)
 set_hl("@variable",         { fg = colors.fg })
-set_hl("@function",         { fg = colors.blue })
+set_hl("@function",         { fg = colors.fg })
 set_hl("@constructor",      { fg = colors.blue })
 set_hl("@keyword",          { fg = colors.red })
 set_hl("@string",           { fg = colors.green })

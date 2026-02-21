@@ -8,10 +8,10 @@ live_config_reload = true
 opacity = 1.0
 
 [font]
-size = 13.0
+size = 11.0
 
 [font.normal]
-family = "Monofur Nerd Font Mono"
+family = "DejaVuSansM Nerd Font"
 
 [colors.primary]
 background = "#1e2528"
