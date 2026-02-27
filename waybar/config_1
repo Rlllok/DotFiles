@@ -2,21 +2,22 @@
   "layer": "top",
   "position": "top",
   "reload_style_on_change": true,
-  "height": 20,
-  "margin-top":    4,
-  "margin-right":  4,
-  "margin-bottom": 0,
-  "margin-left":   4,
+  "height: 20,
+  "margin-top":    8,
+  "margin-right":  8,
+  "margin-bottom": 8,
+  "margin-left":   8,
 
-  "modules-left": ["group/sysinfo"],
+  "modules-left": ["network", "memory", "cpu"],
   "network": {
     "format": "{ifname}",
-    "format-wifi": " 󰤨 {essid}",
+    "format-wifi": " 󰤨 {essid} ",
     "format-ethernet": " Wired ",
     "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
     "format-linked": " 󱘖 {ifname} (No IP) ",
     "format-disconnected": "  Disconnected ",
     "format-disabled": "WiFi Disabled",
+    "format-alt": " 󰤨 {signalStrength}% ",
     "interval":60 
   },
   "memory": {
@@ -25,7 +26,7 @@
   },
   "cpu": {
     "format": "  {usage}% ",
-    "tooltip": false,
+    "tooltip": true,
     "interval": 30,
   },
 
@@ -42,23 +43,10 @@
     },
 
     "hyprland/language": {
-        "format": " {long} {variant}",
+        "format": " {short} {variant}",
     },
 
-  "group/sysinfo": {
-    "orientation": "horizontal",
-    "modules": ["network", "memory", "cpu", "hyprland/language"],
-  },
-  "group/controls": {
-    "orientation": "horizontal",
-    "modules": ["pulseaudio", "backlight", "battery"],
-  },
-  "group/time": {
-    "orientation": "horizontal",
-    "modules": ["clock"],
-  },
-
-  "modules-right": ["group/controls", "group/time"],
+  "modules-right": ["pulseaudio", "backlight", "battery", "hyprland/language", "clock"],
   "pulseaudio": {
     "format": "{volume}% {icon}",
     "format-muted": " 󰖁 0% ",

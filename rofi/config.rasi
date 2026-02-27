@@ -17,7 +17,7 @@ window {
   width: 700px;
   border: 2px solid;
   border-color: #fcbf3b;
-  border-radius: 12px;
+  border-radius: 8px;
   background-color: #1e2528;
   children: [inputbar, listview];
 }

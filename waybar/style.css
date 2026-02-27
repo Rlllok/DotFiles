@@ -1,7 +1,6 @@
 * {
     font-family: "DejaVuSansM Nerd Font", "Symbols Nerd Font";
 
-    font-size: 12px;
     font-weight: bold;
     border: none;
     border-radius: 0;
@@ -10,21 +9,20 @@
     margin: 0;
 }
 
-window#waybar {
-    background: #1e2528;
+#waybar {
+    background-color: transparent;
     color: #f9e2af;
-    border-bottom: 2px solid #fcbf3b;
 }
 
-tooltip {
-    background: #1e2528;
-    border: 1px solid #D7D3CD;
-    color: #fcbf3b;
+#workspaces {
+  background-color: #1e2528;
+  border: 0px solid #fcbf3b;
+  border-radius: 8px;
 }
 
-/* Workspaces */
 #workspaces button {
-    padding: 0 10px;
+    padding: 0 12px;
+    margin: 0px 0px;
     color: #f9e2af;
     background: transparent;
 }
@@ -32,8 +30,6 @@ tooltip {
 #workspaces button.focused,
 #workspaces button.active {
     color: #fcbf3b;
-    background: #1e2528;
-    border-bottom: 4px solid #fcbf3b;
 }
 
 #workspaces button.urgent {
@@ -41,34 +37,25 @@ tooltip {
     background: #FF0000;
 }
 
-#mode, #clock, #cpu, #memory, #temperature,
-#backlight, #pulseaudio, #network, #battery,
-#tray, #custom-power, #custom-updates {
-    padding: 0 12px;
-    margin: 4px 4px;
-    background: #1e2528;
-    border-radius: 8px;
+#sysinfo,
+#time {
+  background-color: #1e2528;
+  border: 0px solid #fcbf3b;
+  border-radius: 8px;
+}
+
+#controls {
+  margin: 0 12px;
+  background-color: #1e2528;
+  border: 0px solid #fcbf3b;
+  border-radius: 8px;
+}
+
+#controls *,
+#sysinfo *,
+#time * {
+  padding: 0 12px;
 }
 
 #battery.charging { color: #70abaf; }
 #battery.critical { color: #f38ba8; }
-
-#tray menu {
-    background: #F8F6F3;
-    border: 1px solid #D7D3CD;
-}
-
-#window {
-    font-weight: bold;
-    color: #2C313A;
-    padding: 0 16px;
-}
-
-/* Power menu / logout button */
-#custom-power {
-    color: #D85A5A;
-    background: #FFE6E8;
-    border-radius: 8px;
-    padding: 0 14px;
-    margin-right: 8px;
-}
