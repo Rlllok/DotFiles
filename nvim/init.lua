@@ -31,6 +31,20 @@ require("lazy").setup({
     "nvim-mini/mini.align", version = "*"
   },
   {
+    "ludovicchabant/vim-gutentags",
+    config = function()
+      -- Optional: fine-tune for C projects
+      vim.g.gutentags_ctags_executable = "ctags"  -- or full path if needed
+      vim.g.gutentags_project_root = { ".git", ".hg", ".svn", "Makefile" }  -- project markers
+      vim.g.gutentags_generate_on_new = 1
+      vim.g.gutentags_generate_on_missing = 1
+      vim.g.gutentags_generate_on_write = 1
+      vim.g.gutentags_generate_on_empty = 0
+      -- Optional: exclude common noise
+      vim.g.gutentags_ctags_exclude = { ".git", "node_modules", "build", "dist", "*.o" }
+    end,
+  },
+  {
     "saghen/blink.cmp",
     version = "1.*",
     opts = {
@@ -72,6 +86,9 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.swapfile = false
+
+vim.opt.tags ="./tags;./tags"
+vim.opt.tagcase = "followic"
 
 --vim.o.langmap = "АБВГДЕЖЗИІЙКЛМНОПРСТУФХЦЧШЩЬЮЯабвгдежзиіїйклмнопрстуфхцчшщьюя,ҐЄІЇґєїі:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,."
 --vim.o.langremap = true
@@ -130,6 +147,10 @@ vim.keymap.set({"n", "v"}, "J","<C-d>zz", {noremap = true, remap = true})
 vim.keymap.set({"n", "v"}, "K","<C-u>zz", {noremap = true, remap = true})
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, remap = true});
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, remap = true});
+
+-- Ctags
+vim.keymap.set("n", "<leader>gd", "<C-]>", {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>gb", "<C-T>", {noremap = true, silent = true})
 
 -- Delete/Yanking
 vim.keymap.set({"n", "v"}, "<leader>d", '"_d');
