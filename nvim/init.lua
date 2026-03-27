@@ -33,15 +33,17 @@ require("lazy").setup({
   {
     "ludovicchabant/vim-gutentags",
     config = function()
-      -- Optional: fine-tune for C projects
-      vim.g.gutentags_ctags_executable = "ctags"  -- or full path if needed
+      if vim.fn.has('macunix') then
+        vim.g.gutentags_ctags_executable = "/opt/homebrew/bin/ctags"
+      else
+        vim.g.gutentags_ctags_executable = "ctags"
+      end
       vim.g.gutentags_project_root = { ".git", ".hg", ".svn", "Makefile" }  -- project markers
       vim.g.gutentags_generate_on_new = 1
       vim.g.gutentags_generate_on_missing = 1
       vim.g.gutentags_generate_on_write = 1
       vim.g.gutentags_generate_on_empty = 0
-      -- Optional: exclude common noise
-      vim.g.gutentags_ctags_exclude = { ".git", "node_modules", "build", "dist", "*.o" }
+      vim.g.gutentags_ctags_exclude = { ".git", "build", "data", "*.o" }
     end,
   },
   {
