@@ -235,6 +235,8 @@ function SetBuildTargetKeybind()
       build_cmd = string.format("build %s nul 2>&1", target)
     elseif system_name == "Linux" then
       build_cmd = string.format("sh build.sh %s nul 2>&1", target)
+    elseif vim.fn.has('macunix') then
+      build_cmd = string.format("sh build_macos.sh %s nul 2>&1", target)
     end
 
     local current_time = vim.fn.strftime("%H:%M:%S")
