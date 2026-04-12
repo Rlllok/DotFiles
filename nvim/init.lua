@@ -288,4 +288,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.diagnostic.enable(true)
 vim.diagnostic.config({virtual_text = true})
 
-vim.cmd("colorscheme yellow_min")
+vim.cmd("colorscheme yellow_minimal")
