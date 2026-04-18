@@ -151,7 +151,18 @@ vim.keymap.set("n", "n", "nzzzv", {noremap = true, remap = true});
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, remap = true});
 
 -- Ctags
-vim.keymap.set("n", "<leader>gd", "<C-]>", {noremap = true, silent = true})
+local function CTags_JumpToDefinitionOtherWindow()
+  local tag_name = vim.fn.expand("<cword>")
+  
+  if tag_name == "" then
+    return
+  end
+
+  vim.cmd("wincmd w")
+  vim.cmd("tag " .. tag_name)
+end
+
+vim.keymap.set("n", "<leader>gd", CTags_JumpToDefinitionOtherWindow, {noremap = true, silent = true})
 vim.keymap.set("n", "<leader>gb", "<C-T>", {noremap = true, silent = true})
 
 -- Delete/Yanking
