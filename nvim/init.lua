@@ -80,6 +80,47 @@ require("mini.align").setup({})
 
 ----------------------------------------------------------------------
 -- Main
+local context = {
+  left_window = nil,
+  right_window = nil,
+  window_ratio = 0.6
+}
+
+function ApplyWindowRatio()
+  local total_width = vim.o.columns
+  local target_width = math.floor(total_width*context.window_ratio)
+  vim.api.nvim_win_set_width(0, target_width)
+end
+
+function SetupContext()
+  local windows = vim.api.nvim_list_wins()
+  context.left_window = windows[1]
+  context.right_window = windows[2]
+  ApplyWindowRatio()
+end
+
+function ChangeWindow()
+  if (vim.fn.winnr("$") > 1) then
+    local target = (vim.api.nvim_get_current_win() == context.left_window) and context.right_window or context.left_window
+
+    if vim.api.nvim_win_is_valid(target) then
+      vim.api.nvim_set_current_win(target)
+      ApplyWindowRatio()
+    end
+  end
+end
+
+function FocusRightWindow()
+  vim.api.nvim_set_current_win(context.right_window)
+end
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function ()
+    vim.cmd("vsplit")
+    SetupContext();
+  end
+})
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 2
@@ -153,14 +194,13 @@ vim.keymap.set("n", "N", "Nzzzv", {noremap = true, remap = true});
 -- Ctags
 local function CTags_JumpToDefinitionOtherWindow()
   local tag_name = vim.fn.expand("<cword>")
-  
   if tag_name == "" then
     return
   end
 
-  vim.cmd("wincmd w")
+  ChangeWindow()
   vim.cmd("tag " .. tag_name)
-  vim.cmd("wincmd w")
+  ChangeWindow()
 end
 
 vim.keymap.set("n", "<leader>gd", CTags_JumpToDefinitionOtherWindow, {noremap = true, silent = true})
@@ -170,15 +210,6 @@ vim.keymap.set("n", "<leader>gb", "<C-T>", {noremap = true, silent = true})
 vim.keymap.set({"n", "v"}, "<leader>d", '"_d');
 
 -- Windows
-local function ChangeWindow()
-  if (vim.fn.winnr("$") > 1) then
-    local total_width = vim.o.columns
-    local target_width = math.floor(total_width*0.6)
-
-    vim.cmd("wincmd w")
-    vim.api.nvim_win_set_width(0, target_width)
-  end
-end
 vim.keymap.set("n", "<leader>ww", ChangeWindow, {remap = true})
 vim.keymap.set("n", "<leader>ws", function() vim.cmd("vsplit") end)
 vim.keymap.set("n", "<leader>wq", function() vim.cmd("q") end)
@@ -249,8 +280,6 @@ function SetBuildTargetKeybind()
 
 
   vim.keymap.set("n", "<space>bb", function()
-    -- OpenTerminal()
-
     local build_cmd = "";
     if system_name == "Windows_NT" then
       build_cmd = string.format("build %s nul 2>&1", target)
@@ -268,10 +297,20 @@ function SetBuildTargetKeybind()
       lines = vim.split(output, "\n"),
     })
 
-    vim.cmd("silent! wincmd o")
-    vim.cmd("silent! vert copen")
-    vim.cmd("silent! wincmd p")
-    vim.cmd("silent! wincmd =")
+    local is_right_quickfix = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(context.right_window), "buftype") == "quickfix";
+    local is_left_quickfix = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(context.right_window), "buftype") == "quickfix";
+    local is_quickfix_open = is_right_quickfix or is_left_quickfix;
+    if not is_quickfix_open then
+      local target_window = (vim.api.nvim_get_current_win() == context.left_window) and context.right_window or context.left_window
+      if vim.api.nvim_win_is_valid(target_window) then
+        vim.api.nvim_win_call(target_window, function()
+          vim.cmd("copen")
+          local quickfix_buffer = vim.api.nvim_get_current_buf()
+          vim.cmd("hide")
+          vim.api.nvim_win_set_buf(target_window, quickfix_buffer)
+        end)
+      end
+    end
   end)
 end
 
