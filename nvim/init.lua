@@ -160,6 +160,7 @@ local function CTags_JumpToDefinitionOtherWindow()
 
   vim.cmd("wincmd w")
   vim.cmd("tag " .. tag_name)
+  vim.cmd("wincmd w")
 end
 
 vim.keymap.set("n", "<leader>gd", CTags_JumpToDefinitionOtherWindow, {noremap = true, silent = true})
@@ -169,7 +170,16 @@ vim.keymap.set("n", "<leader>gb", "<C-T>", {noremap = true, silent = true})
 vim.keymap.set({"n", "v"}, "<leader>d", '"_d');
 
 -- Windows
-vim.keymap.set("n", "<leader>ww", "<C-w>w", {remap = true})
+local function ChangeWindow()
+  if (vim.fn.winnr("$") > 1) then
+    local total_width = vim.o.columns
+    local target_width = math.floor(total_width*0.6)
+
+    vim.cmd("wincmd w")
+    vim.api.nvim_win_set_width(0, target_width)
+  end
+end
+vim.keymap.set("n", "<leader>ww", ChangeWindow, {remap = true})
 vim.keymap.set("n", "<leader>ws", function() vim.cmd("vsplit") end)
 vim.keymap.set("n", "<leader>wq", function() vim.cmd("q") end)
 

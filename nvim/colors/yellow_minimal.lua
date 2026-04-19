@@ -3,9 +3,12 @@ vim.cmd("highlight clear")
 vim.o.background = "dark"
 
 local colors = {
-  bg      = "#1e2528",
-  fg      = "#ffe9c4",
-  yellow  = "#ffd866",
+  -- bg      = "#1e2528",
+  -- fg      = "#ffe9c4",
+  bg      = "#1c2124",
+  fg      = "#dcdccc",
+  -- yellow  = "#ffd866",
+  yellow  = "#ff8a95",
   red     = "#ff87a8",
   green   = "#8acfd1",
   blue    = "#ff8a66",
