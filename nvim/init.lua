@@ -298,7 +298,7 @@ function SetBuildTargetKeybind()
     })
 
     local is_right_quickfix = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(context.right_window), "buftype") == "quickfix";
-    local is_left_quickfix = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(context.right_window), "buftype") == "quickfix";
+    local is_left_quickfix = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(context.left_window), "buftype") == "quickfix";
     local is_quickfix_open = is_right_quickfix or is_left_quickfix;
     if not is_quickfix_open then
       local target_window = (vim.api.nvim_get_current_win() == context.left_window) and context.right_window or context.left_window
@@ -306,7 +306,7 @@ function SetBuildTargetKeybind()
         vim.api.nvim_win_call(target_window, function()
           vim.cmd("copen")
           local quickfix_buffer = vim.api.nvim_get_current_buf()
-          vim.cmd("hide")
+          vim.cmd("cclose")
           vim.api.nvim_win_set_buf(target_window, quickfix_buffer)
         end)
       end
