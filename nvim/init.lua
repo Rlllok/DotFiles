@@ -160,7 +160,7 @@ vim.opt.guicursor = "n-v:block,i:hor20"
 vim.opt.listchars = "tab: ,multispace:┊ "
 vim.opt.list = false
 
-local hightlight_group = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
 vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   callback = function ()
@@ -264,20 +264,25 @@ vim.keymap.set("n", "<space>wt", OpenTerminal)
 ----------------------------------------------------------------------
 -- Project
 function SetBuildTargetKeybind()
-  local target = "main"
+  local target = ""
+  vim.print("Loading Project");
 
   local file_path = vim.fn.getcwd() .. "/.nvim.project"
   if vim.fn.filereadable(file_path) then
     local file = io.open(file_path)
     if file then
       local content = file:read("*all")
-      for word in content:gmatch("target = \"(%a+)\"") do
+      for word in content:gmatch("target = \"([%w_-]+)\"") do
         target = word
       end
       io.close(file)
     end
+    vim.print("Build target: " .. target)
   end
 
+  if target == "" then
+    vim.print("Cannot load build target! " .. file_path)
+  end
 
   vim.keymap.set("n", "<space>bb", function()
     local build_cmd = "";
@@ -293,7 +298,7 @@ function SetBuildTargetKeybind()
     local output = vim.fn.system(build_cmd)
 
     vim.fn.setqflist({}, "r", {
-      title = string.format("[%s] [%s] -- Compilation Result --", target, current_time),
+      title = string.format("[Target: %s] [%s] -- Compilation Result --", target, current_time),
       lines = vim.split(output, "\n"),
     })
 
