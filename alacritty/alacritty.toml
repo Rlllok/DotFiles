@@ -18,7 +18,7 @@ size = 12.0
 family = "DejaVuSansM Nerd Font"
 
 [colors.primary]
-background = "#1c2124"
+background = "#000000"
 foreground = "#dcdccc"
 
 [colors.normal]
@@ -55,7 +55,7 @@ background = "#FF8A95"
 
 [colors.cursor]
 text   = "#000000"
-cursor = "#FF8A95"
+cursor = "#ea027e"
 
 [colors.line_indicator]
 background = "#FFE6E8"
