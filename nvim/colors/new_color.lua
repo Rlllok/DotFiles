@@ -5,11 +5,11 @@ vim.o.background = "dark"
 local colors = {
   bg      = "#080808",
   fg      = "#f5f5f5",
-  yellow  = "#ff8a95",
+  orange  = "#ff8a95",
   red     = "#fe0443",
   green   = "#c0fe04",
   blue    = "#04c0fe",
-  purple  = "#d5b9ff",
+  purple  = "#ea027e",
   cyan    = "#01ffff",
   gray    = "#6b6f88",
   comment = "#8a8fa3",
@@ -93,12 +93,12 @@ set_hl("MsgArea", { fg = colors.fg, bg = colors.bg })
 vim.api.nvim_set_hl(0, "NvimInternalError", { fg = "#ff0000" }) -- Example
 -- Treesitter (modern syntax highlighting)
 set_hl("@variable",         { fg = colors.fg })
-set_hl("@function",         { fg = colors.fg })
+set_hl("@function",         { fg = colors.green })
 set_hl("@constructor",      { fg = colors.fg })
 set_hl("@keyword",          { fg = colors.green })
 set_hl("@string",           { fg = colors.blue })
 set_hl("@comment",          { fg = colors.comment })
-set_hl("@type",             { fg = colors.fg })
+set_hl("@type",             { fg = colors.orange })
 set_hl("@constant",         { fg = colors.fg })
 -- Add more @lsp.* or @markup.* groups as needed
 

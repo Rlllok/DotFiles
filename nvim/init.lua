@@ -241,6 +241,8 @@ vim.defer_fn(function()
         },
     })
 end, 0)
+-- Force tree-sitter to recognize 'func' as a valid function attribute/storage specifier
+vim.g.treesitter_c_macro_types = { "func" }
 
 ----------------------------------------------------------------------
 -- Terminal
@@ -349,7 +351,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.diagnostic.enable(true)
+vim.diagnostic.enable(false)
 vim.diagnostic.config({virtual_text = true})
 
 vim.cmd("colorscheme new_color")
