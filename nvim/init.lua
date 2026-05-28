@@ -1,6 +1,5 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -18,7 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{
+{
     "nvim-treesitter/nvim-treesitter",
     branch = 'master',
     lazy = false,
@@ -157,8 +156,8 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.showmatch = true
 vim.opt.guicursor = "n-v:block,i:hor20"
-vim.opt.listchars = "tab: ,multispace:┊ "
-vim.opt.list = false
+vim.opt.listchars = {lead = "·"}
+vim.opt.list = true
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -251,12 +250,12 @@ local terminal_buffer = 0;
 local job_id = 0;
 
 function OpenTerminal()
-	if terminal_buffer == 0 then
-		vim.cmd.term()
-		terminal_buffer = vim.api.nvim_get_current_buf()
-		job_id = vim.bo.channel
-	end
-	vim.api.nvim_set_current_buf(terminal_buffer)
+  if terminal_buffer == 0 then
+    vim.cmd.term()
+    terminal_buffer = vim.api.nvim_get_current_buf()
+    job_id = vim.bo.channel
+  end
+  vim.api.nvim_set_current_buf(terminal_buffer)
 end
 
 vim.keymap.set("n", "<space>wt", OpenTerminal)
@@ -353,4 +352,27 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.diagnostic.enable(true)
 vim.diagnostic.config({virtual_text = true})
 
-vim.cmd("colorscheme yellow_minimal")
+vim.cmd("colorscheme new_color")
+
+----------------------------------------------------------------------
+-- Status Line
+vim.opt.showmode = false
+vim.opt.laststatus = 3
+
+function GetMode()
+  local mode_table = {
+    n = "NORMAL", i = "INSERT", v = "VISUAL", V = "VISUAL-LINE", c = "COMMAND"
+  }
+  return mode_table[vim.api.nvim_get_mode().mode] or "Unknown Mode"
+end
+
+function CustomStatusLine()
+  return table.concat({
+    "|", GetMode(), "|",
+    "  %f",
+    "%=",
+    "%l/%L",
+    "  %p%%  ",
+  })
+end
+vim.opt.statusline = "%!v:lua.CustomStatusLine()"

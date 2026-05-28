@@ -3,12 +3,12 @@ vim.cmd("highlight clear")
 vim.o.background = "dark"
 
 local colors = {
-  bg      = "#000000",
-  fg      = "#fafafa",
+  bg      = "#080808",
+  fg      = "#f5f5f5",
   yellow  = "#ff8a95",
-  red     = "#ff0d1a",
+  red     = "#fe0443",
   green   = "#c0fe04",
-  blue    = "#ff8a66",
+  blue    = "#04c0fe",
   purple  = "#d5b9ff",
   cyan    = "#01ffff",
   gray    = "#6b6f88",
@@ -75,12 +75,28 @@ set_hl("PmenuSel",     { fg = colors.fg, bg = colors.line })
 set_hl("PmenuSbar",    { bg = colors.yellow })
 set_hl("PmenuThumb",   { bg = colors.fg })
 
+-- QuickFix
+set_hl("QuickfixError",   { fg = colors.red })
+set_hl("QuickfixWarning", { fg = colors.blue })
+
+-- Window
+set_hl("WinSeparator", { fg = colors.green, bg = "NONE" })
+
+-- Eplore
+set_hl("Directory", { fg = colors.green, bg = "NONE" })
+set_hl("netrwComment", { fg = colors.blue, bg = "NONE" })
+
+-- Command Line
+set_hl("MsgArea", { fg = colors.fg, bg = colors.bg })
+
+-- If you want a different color for the active window's border (optional)
+vim.api.nvim_set_hl(0, "NvimInternalError", { fg = "#ff0000" }) -- Example
 -- Treesitter (modern syntax highlighting)
 set_hl("@variable",         { fg = colors.fg })
 set_hl("@function",         { fg = colors.fg })
 set_hl("@constructor",      { fg = colors.fg })
 set_hl("@keyword",          { fg = colors.green })
-set_hl("@string",           { fg = colors.cyan })
+set_hl("@string",           { fg = colors.blue })
 set_hl("@comment",          { fg = colors.comment })
 set_hl("@type",             { fg = colors.fg })
 set_hl("@constant",         { fg = colors.fg })
