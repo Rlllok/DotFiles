@@ -96,9 +96,11 @@ set_hl("@variable",         { fg = colors.fg })
 set_hl("@function",         { fg = colors.green })
 set_hl("@constructor",      { fg = colors.fg })
 set_hl("@keyword",          { fg = colors.green })
+set_hl("@keyword.storage.c",{ fg = colors.fg })
 set_hl("@string",           { fg = colors.blue })
+set_hl("@character.c",      { fg = colors.blue })
 set_hl("@comment",          { fg = colors.comment })
-set_hl("@type",             { fg = colors.orange })
+set_hl("@type",             { fg = colors.fg })
 set_hl("@constant",         { fg = colors.fg })
 -- Add more @lsp.* or @markup.* groups as needed
 
